@@ -731,13 +731,24 @@ export default function Home() {
 
 
 
-      {/* Desktop Floating WhatsApp Button */}
-      <a href="https://wa.me/918989299997" target="_blank" rel="noreferrer" className="hidden lg:flex fixed bottom-8 right-8 bg-green-500 text-white p-4 rounded-full shadow-2xl z-50 hover:scale-110 transition-transform items-center justify-center group">
-        <MessageCircle className="w-8 h-8" />
-        <span className="absolute right-full mr-4 bg-white text-gray-800 px-3 py-1 rounded shadow-lg text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-          Chat with us
-        </span>
-      </a>
+      {/* Floating Action Buttons */}
+      <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 flex flex-col gap-4">
+        {/* Phone Button */}
+        <a href="tel:08989299997" className="flex items-center justify-center bg-blue-600 text-white w-14 h-14 md:w-16 md:h-16 rounded-full shadow-2xl hover:scale-110 transition-transform group relative">
+          <Phone className="w-6 h-6 md:w-7 md:h-7" />
+          <span className="absolute right-full mr-4 bg-white text-gray-800 px-3 py-1 rounded shadow-lg text-sm font-bold opacity-0 md:group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+            Call us
+          </span>
+        </a>
+        
+        {/* WhatsApp Button */}
+        <a href="https://wa.me/918989299997" target="_blank" rel="noreferrer" className="flex items-center justify-center bg-[#25D366] text-white w-14 h-14 md:w-16 md:h-16 rounded-full shadow-2xl hover:scale-110 transition-transform group relative">
+          <MessageCircle className="w-6 h-6 md:w-7 md:h-7" />
+          <span className="absolute right-full mr-4 bg-white text-gray-800 px-3 py-1 rounded shadow-lg text-sm font-bold opacity-0 md:group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+            Chat with us
+          </span>
+        </a>
+      </div>
     </div>
   );
 }
