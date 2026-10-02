@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { MapPin, Phone, Menu, X, Check, Star, MessageCircle, ChevronRight, ChevronDown, Plus } from "@/components/Icons";
+import { MapPin, Phone, Menu, X, Check, Star, MessageCircle, WhatsApp, ChevronRight, ChevronDown, Plus } from "@/components/Icons";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -743,7 +743,7 @@ export default function Home() {
         
         {/* WhatsApp Button */}
         <a href="https://wa.me/918989299997" target="_blank" rel="noreferrer" className="flex items-center justify-center bg-[#25D366] text-white w-14 h-14 md:w-16 md:h-16 rounded-full shadow-2xl hover:scale-110 transition-transform group relative">
-          <MessageCircle className="w-6 h-6 md:w-7 md:h-7" />
+          <WhatsApp className="w-6 h-6 md:w-8 md:h-8" />
           <span className="absolute right-full mr-4 bg-white text-gray-800 px-3 py-1 rounded shadow-lg text-sm font-bold opacity-0 md:group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
             Chat with us
           </span>
