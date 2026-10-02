@@ -92,7 +92,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       {/* Navbar */}
-      <nav className={`fixed w-full z-40 transition-all duration-300 ${isScrolled ? 'bg-white shadow-sm' : 'bg-white/95 backdrop-blur-md'} py-1 top-0 border-b border-gray-100`}>
+      <nav className={`fixed w-full z-40 transition-all duration-300 bg-white ${isScrolled ? 'shadow-sm' : ''} py-1 top-0 border-b border-gray-100`}>
         <div className="w-[95%] md:w-[90%] mx-auto max-w-none flex justify-between items-center gap-2">
           <div className="flex flex-col items-start justify-center shrink-0">
             <a href="#" className="flex items-center">
