@@ -667,65 +667,73 @@ export default function Home() {
 
       {/* Footer */}
       <footer id="contact" className="bg-[#242424] text-gray-400 py-24 font-sans">
-        <div className="w-[90%] mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8 items-start">
+        <div className="w-[90%] mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 items-start">
           
-          {/* Left Column - Services */}
-          <div className="flex flex-col items-center">
-            <h3 className="text-white font-semibold text-base mb-8 tracking-wide">Services</h3>
-            <ul className="flex flex-col items-center space-y-4 font-light text-sm">
-              <li><a href="#services" className="hover:text-white transition-colors">Car Hire</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">Corporate Travel</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">Airport Transfer</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">Family Trips</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">Group Travel</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">Destination Weddings</a></li>
+          {/* Brand & About */}
+          <div className="flex flex-col items-start">
+            <a href="#" className="mb-6 inline-block">
+              <img src="/logo/logo1.png" alt="Travel with Rahul" className="w-48 md:w-56 h-auto object-contain" />
+            </a>
+            <p className="text-gray-400 text-sm font-light leading-relaxed mb-6">
+              Experience the best travel and rental services in Indore. We provide safe, comfortable, and reliable journeys for all your travel needs.
+            </p>
+            <div className="flex gap-4">
+              <a href="https://www.instagram.com/travel_with_rahu1?utm_source=qr&stkn=ZjdrZ3cwY2U0b2ky" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-gray-700 flex items-center justify-center text-gray-400 hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)] transition-all">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fillRule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clipRule="evenodd" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div className="flex flex-col items-start lg:ml-8">
+            <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-[var(--color-primary)]">Quick Links</h3>
+            <ul className="flex flex-col space-y-3 text-gray-400 font-light text-sm">
+              <li><a href="#" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Home</a></li>
+              <li><a href="#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Destinations</a></li>
+              <li><a href="#vehicles" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Vehicles</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Services</a></li>
+              <li><a href="#reviews" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Reviews</a></li>
             </ul>
           </div>
 
-          {/* Center Column - Brand & Newsletter */}
-          <div className="flex flex-col items-center px-4">
-            <div className="mb-8 flex flex-col items-center">
-              <img src="/logo/logo1.png" alt="Travel with Rahul" className="w-56 md:w-72 h-auto object-contain" />
-            </div>
-            
-            {/* Newsletter Input (Design Element from sample) */}
-            <div className="w-full max-w-sm relative mb-16">
-              <input 
-                type="email" 
-                placeholder="Email" 
-                className="w-full bg-transparent border-b border-gray-600 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-white text-sm"
-              />
-              <button className="absolute right-0 top-1/2 -translate-y-1/2 text-xs font-bold tracking-widest text-white hover:text-gray-300 transition-colors uppercase">
-                Send
-              </button>
-            </div>
-
-            {/* Contact Info styled as Social Links */}
-            <div className="flex flex-wrap justify-center gap-6 md:gap-10 text-[11px] font-bold tracking-[0.2em] text-white uppercase leading-loose">
-              <a href="#" className="hover:text-gray-300 border-b-2 border-transparent hover:border-gray-300 pb-1 transition-all">Indore</a>
-              <a href="tel:08989299997" className="hover:text-gray-300 border-b-2 border-transparent hover:border-gray-300 pb-1 transition-all">089892 99997</a>
-              <a href="mailto:travelsrahul23@gmail.com" className="hover:text-gray-300 border-b-2 border-transparent hover:border-gray-300 pb-1 transition-all lowercase">travelsrahul23@gmail.com</a>
-              <a href="https://www.instagram.com/travel_with_rahu1?utm_source=qr&stkn=ZjdrZ3cwY2U0b2ky" target="_blank" rel="noreferrer" className="hover:text-gray-300 border-b-2 border-transparent hover:border-gray-300 pb-1 transition-all">Instagram</a>
-            </div>
+          {/* Services */}
+          <div className="flex flex-col items-start">
+            <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-[var(--color-primary)]">Our Services</h3>
+            <ul className="flex flex-col space-y-3 text-gray-400 font-light text-sm">
+              <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Car Hire</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Corporate Travel</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Airport Transfer</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Family Trips</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Destination Weddings</a></li>
+            </ul>
           </div>
 
-          {/* Right Column - Quick Links */}
-          <div className="flex flex-col items-center">
-            <h3 className="text-white font-semibold text-base mb-8 tracking-wide">Quick Links</h3>
-            <ul className="flex flex-col items-center space-y-4 font-light text-sm">
-              <li><a href="#" className="hover:text-white transition-colors">Home</a></li>
-              <li><a href="#tours" className="hover:text-white transition-colors">Destinations</a></li>
-              <li><a href="#vehicles" className="hover:text-white transition-colors">Vehicles</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">Services</a></li>
-              <li><a href="#reviews" className="hover:text-white transition-colors">Reviews</a></li>
-              <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
+          {/* Contact Info */}
+          <div className="flex flex-col items-start">
+            <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-[var(--color-primary)]">Contact Us</h3>
+            <ul className="flex flex-col space-y-4 text-gray-400 font-light text-sm">
+              <li className="flex items-start gap-3">
+                <MapPin className="w-5 h-5 text-[var(--color-primary)] shrink-0 mt-0.5" />
+                <span>Indore, Madhya Pradesh, India</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Phone className="w-5 h-5 text-[var(--color-primary)] shrink-0" />
+                <a href="tel:08989299997" className="hover:text-white transition-colors">089892 99997</a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Mail className="w-5 h-5 text-[var(--color-primary)] shrink-0" />
+                <a href="mailto:travelsrahul23@gmail.com" className="hover:text-white transition-colors">travelsrahul23@gmail.com</a>
+              </li>
             </ul>
           </div>
           
         </div>
 
-        <div className="w-[90%] mx-auto max-w-6xl mt-24 flex flex-col md:flex-row justify-center items-center gap-6 text-xs text-gray-500 font-light text-center">
-          <p>© 2026 Rahul Tour & Travels. All Rights Reserved.</p>
+        {/* Bottom Bar */}
+        <div className="w-[90%] mx-auto max-w-7xl mt-20 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 font-light">
+          <p>© {new Date().getFullYear()} Rahul Tour & Travels. All Rights Reserved.</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-gray-300 transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-gray-300 transition-colors">Terms & Conditions</a>
