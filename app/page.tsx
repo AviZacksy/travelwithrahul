@@ -101,10 +101,10 @@ export default function Home() {
           </div>
 
           {/* Quick Contact Info for Mobile (Between Logo and Menu) */}
-          <div className="flex flex-col justify-center text-[9px] sm:text-[11px] text-gray-800 font-bold leading-tight mr-auto ml-1 lg:hidden">
-            <a href="tel:08989299997" className="hover:text-[var(--color-primary)]">📞 089892 99997</a>
-            <a href="mailto:travelsrahul23@gmail.com" className="hover:text-[var(--color-primary)] truncate max-w-[120px] sm:max-w-none">✉️ travelsrahul23@gmail.com</a>
-            <span className="truncate">📍 Indore, MP</span>
+          <div className="flex flex-col justify-center text-[11px] sm:text-xs text-black font-semibold leading-snug mr-auto ml-2 lg:hidden gap-0.5">
+            <a href="tel:08989299997" className="flex items-center hover:text-[var(--color-primary)]"><Phone className="w-3 h-3 mr-1.5" /> 089892 99997</a>
+            <a href="mailto:travelsrahul23@gmail.com" className="flex items-center hover:text-[var(--color-primary)]"><MessageCircle className="w-3 h-3 mr-1.5" /> <span className="truncate max-w-[130px] sm:max-w-none">travelsrahul23@gmail.com</span></a>
+            <span className="flex items-center"><MapPin className="w-3 h-3 mr-1.5" /> Indore, MP</span>
           </div>
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-10">
