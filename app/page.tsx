@@ -93,13 +93,19 @@ export default function Home() {
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       {/* Navbar */}
       <nav className={`fixed w-full z-40 transition-all duration-300 ${isScrolled ? 'bg-white shadow-sm' : 'bg-white/95 backdrop-blur-md'} py-1 top-0 border-b border-gray-100`}>
-        <div className="w-[90%] mx-auto max-w-none flex justify-between items-center">
-          <div className="flex flex-col items-start justify-center py-2">
+        <div className="w-[95%] md:w-[90%] mx-auto max-w-none flex justify-between items-center gap-2">
+          <div className="flex flex-col items-start justify-center py-2 shrink-0">
             <a href="#" className="flex items-center">
-              <img src="/logo/logo1.png" alt="Travel with Rahul" className="w-40 md:w-56 h-auto object-contain transform origin-left hover:scale-105 transition-transform" />
+              <img src="/logo/logo1.png" alt="Travel with Rahul" className="w-32 sm:w-40 md:w-56 h-auto object-contain transform origin-left hover:scale-105 transition-transform" />
             </a>
           </div>
 
+          {/* Quick Contact Info for Mobile (Between Logo and Menu) */}
+          <div className="flex flex-col justify-center text-[9px] sm:text-[11px] text-gray-800 font-bold leading-tight mr-auto ml-1 lg:hidden">
+            <a href="tel:08989299997" className="hover:text-[var(--color-primary)]">📞 089892 99997</a>
+            <a href="mailto:travelsrahul23@gmail.com" className="hover:text-[var(--color-primary)] truncate max-w-[120px] sm:max-w-none">✉️ travelsrahul23@gmail.com</a>
+            <span className="truncate">📍 Indore, MP</span>
+          </div>
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-10">
             <div className="flex gap-8 text-[15px] font-bold text-gray-800">
