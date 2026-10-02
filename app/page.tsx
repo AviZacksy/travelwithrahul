@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { MapPin, Phone, Menu, X, Check, Star, MessageCircle, WhatsApp, ChevronRight, ChevronDown, Plus } from "@/components/Icons";
+import { MapPin, Phone, Menu, X, Check, Star, MessageCircle, WhatsApp, Mail, ChevronRight, ChevronDown, Plus } from "@/components/Icons";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -101,10 +101,10 @@ export default function Home() {
           </div>
 
           {/* Quick Contact Info for Mobile (Between Logo and Menu) */}
-          <div className="flex flex-col justify-center text-[11px] sm:text-xs text-black font-semibold leading-snug mr-auto ml-2 lg:hidden gap-0.5">
-            <a href="tel:08989299997" className="flex items-center hover:text-[var(--color-primary)]"><Phone className="w-3 h-3 mr-1.5" /> 089892 99997</a>
-            <a href="mailto:travelsrahul23@gmail.com" className="flex items-center hover:text-[var(--color-primary)]"><MessageCircle className="w-3 h-3 mr-1.5" /> <span className="truncate max-w-[130px] sm:max-w-none">travelsrahul23@gmail.com</span></a>
-            <span className="flex items-center"><MapPin className="w-3 h-3 mr-1.5" /> Indore, MP</span>
+          <div className="flex flex-col items-end justify-center text-[10px] sm:text-xs text-black font-semibold leading-snug ml-auto mr-4 lg:hidden gap-0.5">
+            <a href="tel:08989299997" className="flex items-center hover:text-[var(--color-primary)]">089892 99997 <Phone className="w-3 h-3 ml-1.5" /></a>
+            <a href="mailto:travelsrahul23@gmail.com" className="flex items-center hover:text-[var(--color-primary)] whitespace-nowrap">travelsrahul23@gmail.com <Mail className="w-3 h-3 ml-1.5" /></a>
+            <span className="flex items-center">Indore, MP <MapPin className="w-3 h-3 ml-1.5" /></span>
           </div>
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-10">
