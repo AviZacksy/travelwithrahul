@@ -101,10 +101,9 @@ export default function Home() {
           </div>
 
           {/* Quick Contact Info for Mobile (Between Logo and Menu) */}
-          <div className="flex flex-col items-end justify-center text-[12px] sm:text-[13px] text-black font-semibold leading-[1.15] ml-auto mr-4 lg:hidden">
-            <a href="tel:08989299997" className="flex items-center hover:text-[var(--color-primary)] mb-0.5">089892 99997 <Phone className="w-3.5 h-3.5 ml-1.5" /></a>
-            <a href="mailto:travelsrahul23@gmail.com" className="flex items-center hover:text-[var(--color-primary)] whitespace-nowrap mb-0.5">travelsrahul23@gmail.com <Mail className="w-3.5 h-3.5 ml-1.5" /></a>
-            <span className="flex items-center">Indore, MP <MapPin className="w-3.5 h-3.5 ml-1.5" /></span>
+          <div className="flex flex-col items-end justify-center text-[13px] sm:text-sm text-black font-semibold leading-snug ml-auto mr-4 lg:hidden">
+            <a href="tel:08989299997" className="flex items-center hover:text-[var(--color-primary)] mb-0.5">089892 99997 <Phone className="w-4 h-4 ml-1.5" /></a>
+            <span className="flex items-center">Indore, MP <MapPin className="w-4 h-4 ml-1.5" /></span>
           </div>
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-10">
