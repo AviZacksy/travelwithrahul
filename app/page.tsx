@@ -94,17 +94,17 @@ export default function Home() {
       {/* Navbar */}
       <nav className={`fixed w-full z-40 transition-all duration-300 ${isScrolled ? 'bg-white shadow-sm' : 'bg-white/95 backdrop-blur-md'} py-1 top-0 border-b border-gray-100`}>
         <div className="w-[95%] md:w-[90%] mx-auto max-w-none flex justify-between items-center gap-2">
-          <div className="flex flex-col items-start justify-center py-2 shrink-0">
+          <div className="flex flex-col items-start justify-center shrink-0">
             <a href="#" className="flex items-center">
-              <img src="/logo/logo1.png" alt="Travel with Rahul" className="w-32 sm:w-40 md:w-56 h-auto object-contain transform origin-left hover:scale-105 transition-transform" />
+              <img src="/logo/logo1.png" alt="Travel with Rahul" className="w-44 sm:w-52 md:w-64 h-auto object-contain transform origin-left hover:scale-105 transition-transform" />
             </a>
           </div>
 
           {/* Quick Contact Info for Mobile (Between Logo and Menu) */}
-          <div className="flex flex-col items-end justify-center text-[10px] sm:text-xs text-black font-semibold leading-snug ml-auto mr-4 lg:hidden gap-0.5">
-            <a href="tel:08989299997" className="flex items-center hover:text-[var(--color-primary)]">089892 99997 <Phone className="w-3 h-3 ml-1.5" /></a>
-            <a href="mailto:travelsrahul23@gmail.com" className="flex items-center hover:text-[var(--color-primary)] whitespace-nowrap">travelsrahul23@gmail.com <Mail className="w-3 h-3 ml-1.5" /></a>
-            <span className="flex items-center">Indore, MP <MapPin className="w-3 h-3 ml-1.5" /></span>
+          <div className="flex flex-col items-end justify-center text-[12px] sm:text-[13px] text-black font-semibold leading-[1.15] ml-auto mr-4 lg:hidden">
+            <a href="tel:08989299997" className="flex items-center hover:text-[var(--color-primary)] mb-0.5">089892 99997 <Phone className="w-3.5 h-3.5 ml-1.5" /></a>
+            <a href="mailto:travelsrahul23@gmail.com" className="flex items-center hover:text-[var(--color-primary)] whitespace-nowrap mb-0.5">travelsrahul23@gmail.com <Mail className="w-3.5 h-3.5 ml-1.5" /></a>
+            <span className="flex items-center">Indore, MP <MapPin className="w-3.5 h-3.5 ml-1.5" /></span>
           </div>
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-10">
