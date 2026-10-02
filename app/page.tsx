@@ -182,22 +182,22 @@ export default function Home() {
         <div className="w-[90%] mx-auto max-w-none">
           <div className="grid grid-cols-5 md:flex md:flex-row gap-2 md:gap-4 auto-rows-[200px] sm:auto-rows-[250px] md:auto-rows-auto md:h-[600px]">
             {/* Image 1: Normal Rectangle */}
-            <div className="col-span-3 md:flex-1 relative h-full group rounded-sm overflow-hidden shrink-0">
+            <div className="col-span-3 md:flex-1 relative h-full group overflow-hidden shrink-0">
               <img key={`mobile-0-${heroImageIndex}`} src={currentHeroImages[0]} alt="Travel Destination 1" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
             </div>
 
             {/* Image 2: Normal Rectangle */}
-            <div className="col-span-2 md:flex-1 relative h-full group rounded-sm overflow-hidden shrink-0">
+            <div className="col-span-2 md:flex-1 relative h-full group overflow-hidden shrink-0">
               <img key={`mobile-1-${heroImageIndex}`} src={currentHeroImages[1]} alt="Travel Destination 2" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
             </div>
 
             {/* Image 3: Arched Top */}
-            <div className="col-span-2 md:flex-1 relative h-full group overflow-hidden shrink-0" style={{ borderTopLeftRadius: '9999px', borderTopRightRadius: '9999px' }}>
+            <div className="col-span-2 md:flex-1 relative h-full group overflow-hidden shrink-0">
               <img key={`mobile-2-${heroImageIndex}`} src={currentHeroImages[2]} alt="Travel Destination 3" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
             </div>
 
             {/* Image 4: Full visible on desktop */}
-            <div className="col-span-3 md:flex-1 relative h-full group rounded-sm overflow-hidden shrink-0">
+            <div className="col-span-3 md:flex-1 relative h-full group overflow-hidden shrink-0">
               <img key={`mobile-3-${heroImageIndex}`} src={currentHeroImages[3]} alt="Travel Destination 4" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
             </div>
           </div>
@@ -250,20 +250,20 @@ export default function Home() {
               <div className="grid grid-cols-2 gap-4 lg:gap-6 h-[500px] lg:h-[650px]">
                 {/* Column 1 */}
                 <div className="flex flex-col gap-4 lg:gap-6 translate-y-6 lg:translate-y-12">
-                  <div className="h-[55%] rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] relative group">
+                  <div className="h-[55%] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] relative group">
                     <img key={`desktop-0-${heroImageIndex}`} src={currentHeroImages[0]} alt="Travel Destination 1" className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700" />
                   </div>
-                  <div className="h-[45%] rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] relative group">
+                  <div className="h-[45%] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] relative group">
                     <img key={`desktop-1-${heroImageIndex}`} src={currentHeroImages[1]} alt="Travel Destination 2" className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700" />
                   </div>
                 </div>
                 
                 {/* Column 2 */}
                 <div className="flex flex-col gap-4 lg:gap-6 -translate-y-6 lg:-translate-y-12">
-                  <div className="h-[45%] rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] relative group">
+                  <div className="h-[45%] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] relative group">
                     <img key={`desktop-2-${heroImageIndex}`} src={currentHeroImages[2]} alt="Travel Destination 3" className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700" />
                   </div>
-                  <div className="h-[55%] rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] relative group">
+                  <div className="h-[55%] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] relative group">
                     <img key={`desktop-3-${heroImageIndex}`} src={currentHeroImages[3]} alt="Travel Destination 4" className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700" />
                   </div>
                 </div>
