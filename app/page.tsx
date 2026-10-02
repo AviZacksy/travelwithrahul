@@ -580,9 +580,7 @@ export default function Home() {
             ))}
           </div>
 
-          <a href="#" className="inline-flex items-center gap-2 text-white font-bold hover:text-yellow-400 transition-colors border-b-2 border-transparent hover:border-yellow-400 pb-1">
-            View All Google Reviews <ChevronRight className="w-5 h-5" />
-          </a>
+
         </div>
       </section>
 
