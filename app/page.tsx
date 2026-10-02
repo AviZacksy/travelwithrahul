@@ -379,7 +379,7 @@ export default function Home() {
             <p className="text-lg text-gray-500 max-w-2xl mx-auto font-light mb-8">Explore our wide range of tailored travel and transport services.</p>
           </div>
 
-          <div className="flex flex-col gap-8 max-w-xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-8 max-w-5xl mx-auto">
             {[
               { title: "Vintage Car Hire", img: "/Survices/Vintage.jpg" },
               { title: "Luxury Car Rent", img: "/Survices/LuxuryCarRent.jpg" },
@@ -399,15 +399,15 @@ export default function Home() {
               { title: "Group Travel", img: "/Survices/grouptravel.jpg" },
               { title: "Round Trip", img: "/Survices/Roundtrip.jpg" },
             ].map((service, i) => (
-              <div key={i} className="flex items-center gap-5 group cursor-pointer">
-                <div className="w-40 h-28 shrink-0 overflow-hidden shadow-sm">
+              <div key={i} className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5 group cursor-pointer p-2 sm:p-0 bg-white sm:bg-transparent rounded-lg shadow-sm sm:shadow-none border border-gray-100 sm:border-none">
+                <div className="w-full sm:w-40 h-24 sm:h-28 shrink-0 overflow-hidden shadow-sm rounded-md sm:rounded-none">
                   <img src={service.img} alt={service.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
-                <div className="flex flex-col justify-center">
-                  <p className="text-[13px] text-gray-900 mb-1.5 font-medium">
+                <div className="flex flex-col justify-center mt-1 sm:mt-0">
+                  <p className="text-[10px] sm:text-[13px] text-gray-500 sm:text-gray-900 mb-0.5 sm:mb-1.5 font-medium leading-tight">
                     Available by <span className="italic underline underline-offset-2">Travel with Rahul</span>
                   </p>
-                  <h3 className="text-lg md:text-xl font-bold text-gray-900 leading-snug group-hover:text-[var(--color-primary)] transition-colors">
+                  <h3 className="text-sm sm:text-lg md:text-xl font-bold text-gray-900 leading-tight group-hover:text-[var(--color-primary)] transition-colors">
                     {service.title}
                   </h3>
                 </div>
@@ -667,10 +667,10 @@ export default function Home() {
 
       {/* Footer */}
       <footer id="contact" className="bg-[#242424] text-gray-400 py-24 font-sans">
-        <div className="w-[90%] mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 items-start">
+        <div className="w-[90%] mx-auto max-w-7xl grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8 items-start">
           
           {/* Brand & About */}
-          <div className="flex flex-col items-start">
+          <div className="col-span-2 lg:col-span-1 flex flex-col items-start mb-4 lg:mb-0">
             <a href="#" className="mb-6 inline-block">
               <img src="/logo/logo1.png" alt="Travel with Rahul" className="w-48 md:w-56 h-auto object-contain" />
             </a>
@@ -687,7 +687,7 @@ export default function Home() {
           </div>
 
           {/* Quick Links */}
-          <div className="flex flex-col items-start lg:ml-8">
+          <div className="col-span-1 flex flex-col items-start lg:ml-8">
             <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-[var(--color-primary)]">Quick Links</h3>
             <ul className="flex flex-col space-y-3 text-gray-400 font-light text-sm">
               <li><a href="#" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Home</a></li>
@@ -699,19 +699,23 @@ export default function Home() {
           </div>
 
           {/* Services */}
-          <div className="flex flex-col items-start">
+          <div className="col-span-1 flex flex-col items-start">
             <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-[var(--color-primary)]">Our Services</h3>
             <ul className="flex flex-col space-y-3 text-gray-400 font-light text-sm">
-              <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Car Hire</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Corporate Travel</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Vintage Car Hire</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Luxury Car Rent</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Tour Packages</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Bus Booking</a></li>
               <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Airport Transfer</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Family Trips</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Destination Weddings</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Corporate Travel</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Wedding Car Rental</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Char Dham Yatra</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Narmada Parikrama</a></li>
             </ul>
           </div>
 
           {/* Contact Info */}
-          <div className="flex flex-col items-start">
+          <div className="col-span-2 lg:col-span-1 flex flex-col items-start mt-4 lg:mt-0">
             <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-[var(--color-primary)]">Contact Us</h3>
             <ul className="flex flex-col space-y-4 text-gray-400 font-light text-sm">
               <li className="flex items-start gap-3">
