@@ -26,12 +26,10 @@ export default function Home() {
   }, []);
 
   const allHeroImages = [
-    '/hero/carrent.jpg', '/hero/corporatetravel.jpg', '/hero/airporttransfer.jpg', '/hero/PilgrimageTours.jpg',
     '/hero/1.jpg', '/hero/2.jpg', '/hero/3.jpg', '/hero/4.jpg',
     '/hero/5.jpg', '/hero/6.jpg', '/hero/7.jpg', '/hero/8.jpg',
     '/hero/9.jpg', '/hero/10.jpg', '/hero/11.jpg', '/hero/12.jpg',
-    '/hero/13.jpg', '/hero/14.jpg', '/hero/15.jpg', '/hero/18.jpg',
-    '/hero/19.jpg', '/hero/taj.jpg'
+    '/hero/13.jpg', '/hero/14.jpg'
   ];
   const [heroImageIndex, setHeroImageIndex] = useState(0);
 
@@ -72,15 +70,15 @@ export default function Home() {
 
   const vehiclesData: Vehicle[] = [
     { name: 'Force Traveller', category: '14 to 26 Seater', filter: 'Bus & Vans', price: 'Starting ₹22', priceUnit: '/ km', img: '/Rental/forcetravellor.jpg' },
-    { name: 'Force Urbania', category: 'Luxury Van', filter: 'Bus & Vans', price: 'On Request', priceUnit: '', img: '/Rental/Urbania.jpg' },
-    { name: 'Swift Dzire', category: '4 Seater Sedan', filter: 'Cars', price: '₹11', priceUnit: '/ km', img: '/Rental/swift.jpg' },
+    { name: 'Force Urbania', category: 'Luxury Van', filter: 'Bus & Vans', price: 'On Request', priceUnit: '', img: '/Rental/ForceUrbania.jpg' },
+    { name: 'Swift Dzire', category: '4 Seater Sedan', filter: 'Cars', price: '₹11', priceUnit: '/ km', img: '/Rental/SwiftDzire.jpg' },
     { name: 'Ertiga', category: '6 Seater SUV', filter: 'Cars', price: '₹13', priceUnit: '/ km', img: '/Rental/Ertiga.jpg' },
     { name: 'Innova', category: '7 Seater SUV', filter: 'Cars', price: '₹15', priceUnit: '/ km', img: '/Rental/Innova.jpg' },
     { name: 'Innova Crysta', category: '7 Seater Premium', filter: 'Cars', price: '₹17', priceUnit: '/ km', img: '/Rental/InnovaCrysta.jpg' },
     { name: 'Vintage Cars', category: 'Wedding Special', filter: 'Wedding', price: 'On Request', priceUnit: '', img: '/Rental/VintageCars.jpg' },
     { name: 'Mercedes Benz', category: 'Luxury Sedan', filter: 'Luxury', price: 'On Request', priceUnit: '', img: '/Rental/MercedesBenz.jpg' },
     { name: 'Volvo Bus', category: 'Premium Travel', filter: 'Bus & Vans', price: 'On Request', priceUnit: '', img: '/Rental/VolvoBus.jpg' },
-    { name: 'Jaguar', category: 'Ultra Premium', filter: 'Luxury', price: 'On Request', priceUnit: '', img: '/Rental/Jaguar.jpg' },
+    { name: 'Jaguar', category: 'Ultra Premium', filter: 'Luxury', price: 'On Request', priceUnit: '', img: '/Rental/jaguar.jpg' },
   ];
 
   const vehicleFilters = ['All', 'Cars', 'Bus & Vans', 'Luxury', 'Wedding'];
@@ -330,7 +328,7 @@ export default function Home() {
                 {/* Content */}
                 <div className="flex-1 flex flex-col py-1 pr-2 sm:pr-4 justify-between h-full">
                   <div>
-                    <h3 className="text-base sm:text-xl font-bold text-gray-900 tracking-tight leading-tight mb-1">{vehicle.name}</h3>
+                    <h3 className="text-lg sm:text-2xl font-bold text-gray-900 tracking-tight leading-tight mb-1">{vehicle.name}</h3>
                     
                     <div className="flex items-center gap-2 text-[11px] sm:text-xs text-gray-500 mb-3">
                       <span>{vehicle.filter}</span>
@@ -353,7 +351,7 @@ export default function Home() {
                   <div className="flex justify-between items-end mt-4">
                     <div>
                       {vehicle.oldPrice && <p className="text-[10px] text-gray-400 line-through mb-0.5">{vehicle.oldPrice}</p>}
-                      <p className="text-lg sm:text-2xl font-bold text-gray-900 leading-none tracking-tight">
+                      <p className="text-base sm:text-lg font-bold text-gray-900 leading-none tracking-tight">
                         {vehicle.price} <span className="text-[10px] sm:text-xs text-gray-500 font-normal ml-0.5">{vehicle.priceUnit}</span>
                       </p>
                     </div>
