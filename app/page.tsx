@@ -75,6 +75,8 @@ export default function Home() {
     { name: 'Ertiga', category: '6 Seater SUV', filter: 'Cars', price: '₹13', priceUnit: '/ km', img: '/Rental/Ertiga.jpg' },
     { name: 'Innova', category: '7 Seater SUV', filter: 'Cars', price: '₹15', priceUnit: '/ km', img: '/Rental/Innova.jpg' },
     { name: 'Innova Crysta', category: '7 Seater Premium', filter: 'Cars', price: '₹17', priceUnit: '/ km', img: '/Rental/InnovaCrysta.jpg' },
+    { name: 'Innova Hycross', category: '7 Seater Premium SUV', filter: 'Cars', price: 'On Request', priceUnit: '', img: '/Rental/InnovaHycross.jpg' },
+    { name: 'Fortuner', category: '7 Seater Luxury SUV', filter: 'Luxury', price: 'On Request', priceUnit: '', img: '/Rental/Fortuner.jpg' },
     { name: 'Vintage Cars', category: 'Wedding Special', filter: 'Wedding', price: 'On Request', priceUnit: '', img: '/Rental/VintageCars.jpg' },
     { name: 'Mercedes Benz', category: 'Luxury Sedan', filter: 'Luxury', price: 'On Request', priceUnit: '', img: '/Rental/MercedesBenz.jpg' },
     { name: 'Volvo Bus', category: 'Premium Travel', filter: 'Bus & Vans', price: 'On Request', priceUnit: '', img: '/Rental/VolvoBus.jpg' },
@@ -101,6 +103,7 @@ export default function Home() {
           {/* Quick Contact Info for Mobile (Between Logo and Menu) */}
           <div className="flex flex-col items-end justify-center text-[13px] sm:text-sm text-black font-semibold leading-snug ml-auto mr-4 lg:hidden">
             <a href="tel:08989299997" className="flex items-center hover:text-[var(--color-primary)] mb-0.5">089892 99997 <Phone className="w-4 h-4 ml-1.5" /></a>
+            <a href="tel:09111135812" className="flex items-center hover:text-[var(--color-primary)] mb-0.5">091111 35812 <Phone className="w-4 h-4 ml-1.5" /></a>
             <span className="flex items-center">Indore, MP <MapPin className="w-4 h-4 ml-1.5" /></span>
           </div>
           {/* Desktop Menu */}
@@ -288,12 +291,22 @@ export default function Home() {
             {[
               { name: 'Mahakaleshwar Ujjain', img: '/destination/Mahakaleshwar .jpg' },
               { name: 'Omkareshwar Darshan', img: '/destination/Omkareshwar .jpg' },
+              { name: 'Baglamukhi Temple Nalkheda', img: '/destination/baglamukhitemple .jpg' },
+              { name: 'Indore Local Sightseeing', img: '/destination/Indorelocal.jpg' },
+              { name: 'Khajrana Ganesh Temple', img: '/destination/KhajranaGanesh .jpg' },
+              { name: 'Indore Zoo', img: '/destination/IndoreZoo.jpg' },
+              { name: '56 Dukan (Food Zone)', img: '/destination/56Shop.jpg' },
+              { name: 'Rajwada Palace', img: '/destination/Rajwadapalace.jpg' },
+              { name: 'Lal Bagh Palace', img: '/destination/Lalbagpalace.jpg' },
+              { name: 'Annapurna Mandir', img: '/destination/Annapurnmandir.jpg' },
               { name: 'Mandu Fort', img: '/destination/Mandu.jpg' },
               { name: 'Maheshwar Fort', img: '/destination/MaheshwarFort.jpg' },
               { name: 'Char Dham Yatra', img: '/destination/CharDham.jpg' },
               { name: 'Narmada Parikrama', img: '/destination/Narmada.jpg' },
               { name: 'South India Tour', img: '/destination/South.jpg' },
-              { name: 'Jain Tour', img: '/destination/jaintour.jpg' }
+              { name: 'Jain Tour', img: '/destination/jaintour.jpg' },
+              { name: 'Jaisalmer Desert Safari', img: '/destination/Jaisalmer.jpg' },
+              { name: 'Pachmarhi Hill Station', img: '/destination/Mahakaleshwar .jpg' }
             ].map((dest, i) => (
               <div key={i} className="snap-start shrink-0 flex flex-col items-center group cursor-pointer w-[140px] sm:w-[160px] md:w-40">
                 <div className="w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] md:w-40 md:h-40 rounded-full overflow-hidden mb-4 shadow-sm border border-gray-100 group-hover:shadow-md transition-shadow">
@@ -665,10 +678,10 @@ export default function Home() {
 
       {/* Footer */}
       <footer id="contact" className="bg-[#242424] text-gray-400 py-24 font-sans">
-        <div className="w-[90%] mx-auto max-w-7xl grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8 items-start">
+        <div className="w-[90%] mx-auto max-w-7xl grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-8 items-start">
           
           {/* Brand & About */}
-          <div className="col-span-2 lg:col-span-1 flex flex-col items-start mb-4 lg:mb-0">
+          <div className="col-span-2 md:col-span-3 lg:col-span-1 flex flex-col items-start mb-4 lg:mb-0">
             <a href="#" className="mb-6 inline-block">
               <img src="/logo/logo1.png" alt="Travel with Rahul" className="w-48 md:w-56 h-auto object-contain" />
             </a>
@@ -696,6 +709,19 @@ export default function Home() {
             </ul>
           </div>
 
+          {/* Destinations */}
+          <div className="col-span-1 flex flex-col items-start">
+            <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-[var(--color-primary)]">Destinations</h3>
+            <ul className="flex flex-col space-y-3 text-gray-400 font-light text-sm">
+              <li><a href="#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Baglamukhi Temple</a></li>
+              <li><a href="#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Indore Local</a></li>
+              <li><a href="#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Khajrana Ganesh</a></li>
+              <li><a href="#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Mahakaleshwar</a></li>
+              <li><a href="#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Jaisalmer Safari</a></li>
+              <li><a href="#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Pachmarhi Hill</a></li>
+            </ul>
+          </div>
+
           {/* Services */}
           <div className="col-span-1 flex flex-col items-start">
             <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-[var(--color-primary)]">Our Services</h3>
@@ -713,16 +739,19 @@ export default function Home() {
           </div>
 
           {/* Contact Info */}
-          <div className="col-span-2 lg:col-span-1 flex flex-col items-start mt-4 lg:mt-0">
+          <div className="col-span-2 md:col-span-3 lg:col-span-1 flex flex-col items-start mt-4 lg:mt-0">
             <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-[var(--color-primary)]">Contact Us</h3>
             <ul className="flex flex-col space-y-4 text-gray-400 font-light text-sm">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-[var(--color-primary)] shrink-0 mt-0.5" />
                 <span>Indore, Madhya Pradesh, India</span>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex items-start gap-3 mt-4">
                 <Phone className="w-5 h-5 text-[var(--color-primary)] shrink-0" />
-                <a href="tel:08989299997" className="hover:text-white transition-colors">089892 99997</a>
+                <div className="flex flex-col">
+                  <a href="tel:08989299997" className="hover:text-white transition-colors">089892 99997</a>
+                  <a href="tel:09111135812" className="hover:text-white transition-colors mt-1">091111 35812</a>
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-[var(--color-primary)] shrink-0" />
