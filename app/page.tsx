@@ -41,7 +41,7 @@ export default function Home() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const scrollIt = (ref: React.RefObject<HTMLDivElement>) => {
+      const scrollIt = (ref: React.RefObject<HTMLDivElement | null>) => {
         if (ref.current) {
           const { scrollLeft, scrollWidth, clientWidth } = ref.current;
           // If we've reached the end (with a small 10px buffer), scroll back to the start
