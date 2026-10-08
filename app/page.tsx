@@ -159,7 +159,7 @@ export default function Home() {
               <a href="#contact" className="hover:text-[#1e7123] border-b-2 border-transparent hover:border-[#1e7123] transition-all pb-1">Contact</a>
               <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-[#1e7123] border-b-2 border-transparent hover:border-[#1e7123] transition-all pb-1">View Instagram</a>
             </div>
-            <button onClick={() => setBookingModalOpen(true)} className="bg-[#1e7123] text-white px-7 py-3 rounded hover:bg-[#155319] transition-colors font-semibold flex items-center gap-2 shadow-md">
+            <button onClick={() => setBookingModalOpen(true)} className="bg-[#1e7123] text-white px-7 py-3 hover:bg-[#155319] transition-colors font-semibold flex items-center gap-2 shadow-md">
               Book Now <ChevronRight className="w-4 h-4" />
             </button>
           </div>
@@ -259,13 +259,13 @@ export default function Home() {
           </div>
 
           <div className="mt-8 flex flex-row flex-wrap justify-center items-center gap-3 sm:gap-4">
-            <button onClick={() => setBookingModalOpen(true)} className="px-5 sm:px-6 bg-[#1e7123] hover:bg-[#155319] text-white py-3 border-2 border-transparent rounded-xl font-bold text-sm sm:text-base transition-all shadow-lg flex items-center justify-center">
+            <button onClick={() => setBookingModalOpen(true)} className="px-5 sm:px-6 bg-[#1e7123] hover:bg-[#155319] text-white py-3 border-2 border-transparent font-bold text-sm sm:text-base transition-all shadow-lg flex items-center justify-center">
               Book Tours
             </button>
-            <button onClick={() => setBookingModalOpen(true)} className="px-5 sm:px-6 bg-white border-2 border-[#1e7123] text-[#1e7123] hover:bg-gray-50 py-3 rounded-xl font-bold text-sm sm:text-base transition-all flex items-center justify-center">
+            <button onClick={() => setBookingModalOpen(true)} className="px-5 sm:px-6 bg-white border-2 border-[#1e7123] text-[#1e7123] hover:bg-gray-50 py-3 font-bold text-sm sm:text-base transition-all flex items-center justify-center">
               Rent a Car
             </button>
-            <a href="tel:08989299997" className="px-5 sm:px-6 bg-gray-900 hover:bg-black text-white py-3 border-2 border-transparent rounded-xl font-bold text-sm sm:text-base transition-all shadow-lg flex items-center justify-center gap-2">
+            <a href="tel:08989299997" className="px-5 sm:px-6 bg-gray-900 hover:bg-black text-white py-3 border-2 border-transparent font-bold text-sm sm:text-base transition-all shadow-lg flex items-center justify-center gap-2">
               <Phone className="w-4 h-4" /> Call Now
             </a>
           </div>
@@ -291,10 +291,10 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <button onClick={() => setBookingModalOpen(true)} className="bg-[var(--color-primary)] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#112240] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2">
+                <button onClick={() => setBookingModalOpen(true)} className="bg-[var(--color-primary)] text-white px-8 py-4 font-bold text-lg hover:bg-[#112240] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2">
                   Book a Vehicle <ChevronRight className="w-5 h-5" />
                 </button>
-                <a href="tel:08989299997" className="bg-white border-2 border-gray-200 text-gray-800 px-8 py-4 rounded-xl font-bold text-lg hover:border-gray-300 hover:bg-gray-50 transition-all flex items-center justify-center gap-2">
+                <a href="tel:08989299997" className="bg-white border-2 border-gray-200 text-gray-800 px-8 py-4 font-bold text-lg hover:border-gray-300 hover:bg-gray-50 transition-all flex items-center justify-center gap-2">
                   <Phone className="w-5 h-5" /> Contact Us
                 </a>
               </div>
@@ -446,7 +446,7 @@ export default function Home() {
                             </p>
                           </div>
 
-                          <button onClick={() => setBookingModalOpen(true)} className="px-5 py-2 sm:px-6 sm:py-2.5 bg-[#1A1A1A] text-white rounded-full text-xs sm:text-sm font-bold hover:bg-[var(--color-primary)] transition-colors shrink-0">
+                          <button onClick={() => setBookingModalOpen(true)} className="px-5 py-2 sm:px-6 sm:py-2.5 bg-[#1A1A1A] text-white text-xs sm:text-sm font-bold hover:bg-[var(--color-primary)] transition-colors shrink-0">
                             Book Now
                           </button>
                         </div>
@@ -937,10 +937,10 @@ export default function Home() {
               </p>
               
               <div className="flex flex-col gap-3">
-                <a href="https://wa.me/918989299997?text=Hi,%20I%20would%20like%20to%20book%20a%20trip/vehicle" target="_blank" rel="noreferrer" className="w-full bg-[#25D366] hover:bg-[#1DA851] text-white py-3.5 rounded-xl font-bold text-[16px] flex items-center justify-center gap-2 shadow-lg transition-transform hover:scale-[1.02]">
+                <a href="https://wa.me/918989299997?text=Hi,%20I%20would%20like%20to%20book%20a%20trip/vehicle" target="_blank" rel="noreferrer" className="w-full bg-[#25D366] hover:bg-[#1DA851] text-white py-3.5 font-bold text-[16px] flex items-center justify-center gap-2 shadow-lg transition-transform hover:scale-[1.02]">
                   <WhatsApp className="w-5 h-5" /> Book via WhatsApp
                 </a>
-                <a href="tel:08989299997" className="w-full bg-gray-900 hover:bg-black text-white py-3.5 rounded-xl font-bold text-[16px] flex items-center justify-center gap-2 shadow-lg transition-transform hover:scale-[1.02]">
+                <a href="tel:08989299997" className="w-full bg-gray-900 hover:bg-black text-white py-3.5 font-bold text-[16px] flex items-center justify-center gap-2 shadow-lg transition-transform hover:scale-[1.02]">
                   <Phone className="w-5 h-5" /> Call Now
                 </a>
               </div>
