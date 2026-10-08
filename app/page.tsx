@@ -114,7 +114,7 @@ export default function Home() {
     { name: 'Vintage Cars', category: 'Wedding Special', filter: 'Wedding', price: 'On Request', priceUnit: '', img: '/Rental/VintageCars.jpg' },
     { name: 'Mercedes Benz', category: 'Luxury Sedan', filter: 'Luxury', price: 'On Request', priceUnit: '', img: '/Rental/MercedesBenz.jpg' },
     { name: 'Volvo Bus', category: 'Premium Travel', filter: 'Bus & Vans', price: 'On Request', priceUnit: '', img: '/Rental/VolvoBus.jpg' },
-    { name: 'Jaguar', category: 'Ultra Premium', filter: 'Luxury', price: 'On Request', priceUnit: '', img: '/Rental/jaguar.jpg' },
+    { name: 'Jaguar', category: 'Ultra Premium', filter: 'Luxury', price: 'On Request', priceUnit: '', img: '/Rental/Jaguar.jpg' },
   ];
 
   const vehicleFilters = ['All', 'Cars', 'Bus & Vans', 'Luxury', 'Wedding'];
