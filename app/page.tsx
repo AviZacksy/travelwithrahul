@@ -518,7 +518,7 @@ export default function Home() {
           <div className="text-center mb-10 md:mb-16 px-4">
             <h2 className="text-3xl md:text-4xl font-medium text-white mb-4 tracking-tight">Explore by State</h2>
             <p className="text-base sm:text-lg text-gray-100 opacity-90 max-w-2xl mx-auto font-light leading-relaxed">
-              Find the best <span className="font-medium text-green-200">travel packages</span> and <span className="font-medium text-green-200">destinations</span> across India.
+              Find the best <span className="font-medium">travel packages</span> and <span className="font-medium">destinations</span> across India.
             </p>
           </div>
 
