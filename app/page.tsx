@@ -532,8 +532,8 @@ export default function Home() {
               { name: 'Uttarakhand', img: '/explorebystate/uttrakhand.jpg', slug: 'uttarakhand', title: 'Experience the divine beauty of Devbhoomi Uttarakhand' },
               { name: 'Madhya Pradesh', img: '/explorebystate/madhyapradesh.jpg', slug: 'madhya-pradesh', title: 'Journey into the historic heartland of Madhya Pradesh' },
             ].map((state, i) => (
-              <a href={`/states/${state.slug}`} key={i} className="flex flex-row items-center gap-4 group cursor-pointer w-full bg-white p-3 sm:p-4 rounded-xl shadow-sm hover:shadow-lg transition-all border border-gray-100/10">
-                <div className="w-[120px] h-[80px] sm:w-[150px] sm:h-[100px] shrink-0 overflow-hidden bg-gray-100 rounded-md">
+              <a href={`/states/${state.slug}`} key={i} className="flex flex-row items-center gap-4 group cursor-pointer w-full bg-white p-3 sm:p-4 shadow-sm hover:shadow-lg transition-all border border-gray-100/10">
+                <div className="w-[120px] h-[80px] sm:w-[150px] sm:h-[100px] shrink-0 overflow-hidden bg-gray-100">
                   <img src={state.img} alt={state.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="flex flex-col justify-center">
