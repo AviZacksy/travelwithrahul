@@ -1,26 +1,60 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { MapPin, Phone, Menu, X, Check, Star, MessageCircle, WhatsApp, Mail, ChevronRight, ChevronDown, Plus } from "@/components/Icons";
+import { MapPin, Phone, Menu, X, Check, Star, MessageCircle, WhatsApp, Instagram, Mail, ChevronRight, ChevronDown, Plus, ChevronLeft } from "@/components/Icons";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [activeVehicleFilter, setActiveVehicleFilter] = useState('All');
   const destinationsRef = useRef<HTMLDivElement>(null);
+  const indoreRef = useRef<HTMLDivElement>(null);
+  const vehiclesRef = useRef<HTMLDivElement>(null);
+  const [activeVehicleChunk, setActiveVehicleChunk] = useState(0);
+
+  const scrollVehicles = (direction: 'left' | 'right') => {
+    if (vehiclesRef.current) {
+      const scrollAmount = vehiclesRef.current.clientWidth;
+      vehiclesRef.current.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+    }
+  };
+
+  const scrollToVehicleChunk = (index: number) => {
+    if (vehiclesRef.current) {
+      const width = vehiclesRef.current.clientWidth;
+      vehiclesRef.current.scrollTo({ left: width * index, behavior: 'smooth' });
+    }
+  };
+
+  const handleVehicleScroll = () => {
+    if (vehiclesRef.current) {
+      const scrollLeft = vehiclesRef.current.scrollLeft;
+      const width = vehiclesRef.current.clientWidth;
+      const index = Math.round(scrollLeft / width);
+      setActiveVehicleChunk(index);
+    }
+  };
+
+
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (destinationsRef.current) {
-        const { scrollLeft, scrollWidth, clientWidth } = destinationsRef.current;
-        // If we've reached the end (with a small 10px buffer), scroll back to the start
-        if (scrollLeft + clientWidth >= scrollWidth - 10) {
-          destinationsRef.current.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          destinationsRef.current.scrollBy({ left: 200, behavior: 'smooth' });
+      const scrollIt = (ref: React.RefObject<HTMLDivElement>) => {
+        if (ref.current) {
+          const { scrollLeft, scrollWidth, clientWidth } = ref.current;
+          // If we've reached the end (with a small 10px buffer), scroll back to the start
+          if (scrollLeft + clientWidth >= scrollWidth - 10) {
+            ref.current.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            ref.current.scrollBy({ left: 200, behavior: 'smooth' });
+          }
         }
-      }
+      };
+      
+      scrollIt(destinationsRef);
+      scrollIt(indoreRef);
     }, 3000);
     return () => clearInterval(interval);
   }, []);
@@ -85,9 +119,14 @@ export default function Home() {
 
   const vehicleFilters = ['All', 'Cars', 'Bus & Vans', 'Luxury', 'Wedding'];
 
-  const filteredVehicles = activeVehicleFilter === 'All' 
-    ? vehiclesData 
+  const filteredVehicles = activeVehicleFilter === 'All'
+    ? vehiclesData
     : vehiclesData.filter(v => v.filter === activeVehicleFilter);
+
+  const vehicleChunks = [];
+  for (let i = 0; i < filteredVehicles.length; i += 3) {
+    vehicleChunks.push(filteredVehicles.slice(i, i + 3));
+  }
 
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
@@ -109,16 +148,20 @@ export default function Home() {
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-10">
             <div className="flex gap-8 text-[15px] font-bold text-gray-800">
-              <a href="#" className="hover:text-[var(--color-primary)] border-b-2 border-transparent hover:border-[var(--color-primary)] transition-all pb-1">Home</a>
-              <a href="#tours" className="hover:text-[var(--color-primary)] border-b-2 border-transparent hover:border-[var(--color-primary)] transition-all pb-1">Destinations</a>
-              <a href="#vehicles" className="hover:text-[var(--color-primary)] border-b-2 border-transparent hover:border-[var(--color-primary)] transition-all pb-1">Vehicles</a>
-              <a href="#services" className="hover:text-[var(--color-primary)] border-b-2 border-transparent hover:border-[var(--color-primary)] transition-all pb-1">Services</a>
-              <a href="#reviews" className="hover:text-[var(--color-primary)] border-b-2 border-transparent hover:border-[var(--color-primary)] transition-all pb-1">Reviews</a>
-              <a href="#contact" className="hover:text-[var(--color-primary)] border-b-2 border-transparent hover:border-[var(--color-primary)] transition-all pb-1">Contact</a>
+              <a href="#" className="hover:text-[#1e7123] border-b-2 border-transparent hover:border-[#1e7123] transition-all pb-1">Home</a>
+              
+              <a href="#tours" className="hover:text-[#1e7123] border-b-2 border-transparent hover:border-[#1e7123] transition-all pb-1">Destinations</a>
+              <a href="#indore-tours" className="hover:text-[#1e7123] border-b-2 border-transparent hover:border-[#1e7123] transition-all pb-1">Indore Local Sightseeing</a>
+              <a href="#states" className="hover:text-[#1e7123] border-b-2 border-transparent hover:border-[#1e7123] transition-all pb-1">Explore by State</a>
+              <a href="#vehicles" className="hover:text-[#1e7123] border-b-2 border-transparent hover:border-[#1e7123] transition-all pb-1">Explore Vehicles</a>
+              <a href="#services" className="hover:text-[#1e7123] border-b-2 border-transparent hover:border-[#1e7123] transition-all pb-1">Services</a>
+              <a href="#reviews" className="hover:text-[#1e7123] border-b-2 border-transparent hover:border-[#1e7123] transition-all pb-1">Reviews</a>
+              <a href="#contact" className="hover:text-[#1e7123] border-b-2 border-transparent hover:border-[#1e7123] transition-all pb-1">Contact</a>
+              <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-[#1e7123] border-b-2 border-transparent hover:border-[#1e7123] transition-all pb-1">View Instagram</a>
             </div>
-            <a href="#contact" className="bg-[#0A192F] text-white px-7 py-3 rounded hover:bg-[#112240] transition-colors font-semibold flex items-center gap-2 shadow-md">
+            <button onClick={() => setBookingModalOpen(true)} className="bg-[#1e7123] text-white px-7 py-3 rounded hover:bg-[#155319] transition-colors font-semibold flex items-center gap-2 shadow-md">
               Book Now <ChevronRight className="w-4 h-4" />
-            </a>
+            </button>
           </div>
 
           {/* Mobile Toggle */}
@@ -153,24 +196,36 @@ export default function Home() {
                 <span className="border-b border-gray-900 pb-[1px]">Home</span>
                 <ChevronRight className="w-4 h-4 text-gray-800" />
               </a>
-              <a href="#tours" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between text-gray-900 font-medium text-[15px] w-full group">
+              <a href="#tours" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between text-gray-900 font-medium text-[15px] w-full group hover:text-[#1e7123]">
                 <span>Destinations</span>
                 <ChevronRight className="w-4 h-4 text-gray-800" />
               </a>
-              <a href="#vehicles" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between text-gray-900 font-medium text-[15px] w-full group">
-                <span>Vehicles</span>
+              <a href="#indore-tours" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between text-gray-900 font-medium text-[15px] w-full group hover:text-[#1e7123]">
+                <span>Indore Local Sightseeing</span>
                 <ChevronRight className="w-4 h-4 text-gray-800" />
               </a>
-              <a href="#services" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between text-gray-900 font-medium text-[15px] w-full group">
+              <a href="#states" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between text-gray-900 font-medium text-[15px] w-full group hover:text-[#1e7123]">
+                <span>Explore by State</span>
+                <ChevronRight className="w-4 h-4 text-gray-800" />
+              </a>
+              <a href="#vehicles" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between text-gray-900 font-medium text-[15px] w-full group hover:text-[#1e7123]">
+                <span>Explore Vehicles</span>
+                <ChevronRight className="w-4 h-4 text-gray-800" />
+              </a>
+              <a href="#services" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between text-gray-900 font-medium text-[15px] w-full group hover:text-[#1e7123]">
                 <span>Services</span>
                 <ChevronRight className="w-4 h-4 text-gray-800" />
               </a>
-              <a href="#reviews" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between text-gray-900 font-medium text-[15px] w-full group">
+              <a href="#reviews" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between text-gray-900 font-medium text-[15px] w-full group hover:text-[#1e7123]">
                 <span>Reviews</span>
                 <ChevronRight className="w-4 h-4 text-gray-800" />
               </a>
-              <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between text-gray-900 font-medium text-[15px] w-full group">
+              <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between text-gray-900 font-medium text-[15px] w-full group hover:text-[#1e7123]">
                 <span>Contact</span>
+                <ChevronRight className="w-4 h-4 text-gray-800" />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noreferrer" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between text-gray-900 font-medium text-[15px] w-full group hover:text-[#1e7123]">
+                <span>View Instagram</span>
                 <ChevronRight className="w-4 h-4 text-gray-800" />
               </a>
             </div>
@@ -202,6 +257,18 @@ export default function Home() {
               <img key={`mobile-3-${heroImageIndex}`} src={currentHeroImages[3]} alt="Travel Destination 4" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
             </div>
           </div>
+
+          <div className="mt-8 flex flex-row flex-wrap justify-center items-center gap-3 sm:gap-4">
+            <button onClick={() => setBookingModalOpen(true)} className="px-5 sm:px-6 bg-[#1e7123] hover:bg-[#155319] text-white py-3 border-2 border-transparent rounded-xl font-bold text-sm sm:text-base transition-all shadow-lg flex items-center justify-center">
+              Book Tours
+            </button>
+            <button onClick={() => setBookingModalOpen(true)} className="px-5 sm:px-6 bg-white border-2 border-[#1e7123] text-[#1e7123] hover:bg-gray-50 py-3 rounded-xl font-bold text-sm sm:text-base transition-all flex items-center justify-center">
+              Rent a Car
+            </button>
+            <a href="tel:08989299997" className="px-5 sm:px-6 bg-gray-900 hover:bg-black text-white py-3 border-2 border-transparent rounded-xl font-bold text-sm sm:text-base transition-all shadow-lg flex items-center justify-center gap-2">
+              <Phone className="w-4 h-4" /> Call Now
+            </a>
+          </div>
         </div>
       </section>
 
@@ -209,29 +276,29 @@ export default function Home() {
       <section id="home-desktop" className="hidden lg:block pt-[120px] md:pt-[150px] pb-12 md:pb-24 bg-white overflow-hidden">
         <div className="w-[90%] mx-auto max-w-none">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
-            
+
             {/* Left Content */}
             <div className="w-full lg:w-1/2 flex flex-col justify-center">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-[var(--color-primary)] font-semibold text-sm mb-6 w-max border border-blue-100">
                 <Star className="w-4 h-4 fill-[var(--color-secondary)] text-[var(--color-secondary)]" /> Top Rated Travel Agency in Indore
               </div>
               <h1 className="text-5xl lg:text-[4rem] font-bold text-gray-900 leading-[1.1] mb-6 tracking-tight font-sans">
-                Your Journey, <br/>
+                Your Journey, <br />
                 <span className="text-[var(--color-primary)]">Our Priority.</span>
               </h1>
               <p className="text-lg text-gray-500 mb-8 max-w-md leading-relaxed font-light">
                 Experience premium comfort and safety with our wide range of luxury cars, buses, and Force Travellers for local and outstation trips.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href="#vehicles" className="bg-[var(--color-primary)] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#112240] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2">
+                <button onClick={() => setBookingModalOpen(true)} className="bg-[var(--color-primary)] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#112240] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2">
                   Book a Vehicle <ChevronRight className="w-5 h-5" />
-                </a>
+                </button>
                 <a href="tel:08989299997" className="bg-white border-2 border-gray-200 text-gray-800 px-8 py-4 rounded-xl font-bold text-lg hover:border-gray-300 hover:bg-gray-50 transition-all flex items-center justify-center gap-2">
                   <Phone className="w-5 h-5" /> Contact Us
                 </a>
               </div>
-              
+
               {/* Trust badges */}
               <div className="mt-12 flex items-center gap-8 border-t border-gray-100 pt-8">
                 <div className="flex flex-col">
@@ -258,7 +325,7 @@ export default function Home() {
                     <img key={`desktop-1-${heroImageIndex}`} src={currentHeroImages[1]} alt="Travel Destination 2" className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700" />
                   </div>
                 </div>
-                
+
                 {/* Column 2 */}
                 <div className="flex flex-col gap-4 lg:gap-6 -translate-y-6 lg:-translate-y-12">
                   <div className="h-[45%] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] relative group">
@@ -269,11 +336,11 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Decorative background blob */}
               <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-50/80 rounded-full blur-3xl"></div>
             </div>
-            
+
           </div>
         </div>
       </section>
@@ -320,7 +387,6 @@ export default function Home() {
       </section>
 
 
-
       {/* Our Vehicles */}
       <section id="vehicles" className="pt-12 pb-12 md:pb-20 md:pt-16 bg-[#1e7123]">
         <div className="w-[90%] mx-auto max-w-none">
@@ -329,61 +395,163 @@ export default function Home() {
             <p className="text-lg text-gray-100 max-w-2xl mx-auto font-light mb-8 opacity-90">Choose from our wide range of premium vehicles for your comfortable journey.</p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 sm:gap-6">
-            {filteredVehicles.map((vehicle, index) => (
-              <div key={`${vehicle.name}-${index}`} className="bg-white rounded-none p-4 sm:p-6 min-h-[150px] sm:min-h-[200px] flex flex-row items-center gap-4 sm:gap-8 shadow-[0_2px_15px_rgba(0,0,0,0.04)] border border-gray-100 hover:shadow-lg transition-shadow duration-300">
-                
-                {/* Image Container */}
-                <div className="w-36 h-28 sm:w-56 sm:h-40 bg-white rounded-none overflow-hidden shrink-0 flex items-center justify-center relative">
-                  <img src={vehicle.img} alt={vehicle.name} className="w-full h-full object-contain" />
-                </div>
-                
-                {/* Content */}
-                <div className="flex-1 flex flex-col py-1 pr-2 sm:pr-4 justify-between h-full">
-                  <div>
-                    <h3 className="text-lg sm:text-2xl font-bold text-gray-900 tracking-tight leading-tight mb-1">{vehicle.name}</h3>
-                    
-                    <div className="flex items-center gap-2 text-[11px] sm:text-xs text-gray-500 mb-3">
-                      <span>{vehicle.filter}</span>
-                      <span className="w-1 h-1 rounded-full bg-gray-300"></span>
-                      <span>{vehicle.category}</span>
-                    </div>
+          <div className="relative group px-2 sm:px-8">
+            {/* Left Arrow */}
+            <button
+              onClick={() => scrollVehicles('left')}
+              className="absolute left-0 top-1/2 -translate-y-1/2 bg-white w-10 h-10 flex items-center justify-center rounded-full shadow-lg z-10 text-gray-800 hover:text-[var(--color-primary)] hover:scale-110 transition-all opacity-0 group-hover:opacity-100 hidden sm:flex"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
 
-                    <div className="hidden sm:flex items-center gap-5 text-[11px] text-gray-500 font-medium mb-1">
-                      <div className="flex items-center gap-1.5">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/><path d="M12 14a4 4 0 0 0-4 4"/><path d="M16 18a4 4 0 0 0-4-4"/></svg>
-                        Auto/Manual
+            <div ref={vehiclesRef} onScroll={handleVehicleScroll} className="flex overflow-x-auto gap-4 sm:gap-6 snap-x snap-mandatory hide-scrollbar pb-4 pt-2">
+              {vehicleChunks.map((chunk, chunkIndex) => (
+                <div key={`chunk-${chunkIndex}`} className="snap-start shrink-0 w-full flex flex-col gap-4">
+                  {chunk.map((vehicle, index) => (
+                    <div key={`${vehicle.name}-${index}`} className="bg-white rounded-none p-4 sm:p-6 min-h-[150px] sm:min-h-[200px] flex flex-row items-center gap-4 sm:gap-8 shadow-[0_2px_15px_rgba(0,0,0,0.04)] border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+
+                      {/* Image Container */}
+                      <div className="w-36 h-28 sm:w-56 sm:h-40 bg-white rounded-none overflow-hidden shrink-0 flex items-center justify-center relative">
+                        <img src={vehicle.img} alt={vehicle.name} className="w-full h-full object-contain" />
                       </div>
-                      <div className="flex items-center gap-1.5">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 22h12"/><path d="M5 22V4c0-1.1.9-2 2-2h4c1.1 0 2 .9 2 2v18"/><path d="M13 14V4"/><path d="M21 16V9a2 2 0 0 0-2-2h-3"/><path d="M21 16a2 2 0 0 1-2 2h-1"/><circle cx="9" cy="9" r="2"/></svg>
-                        AC / Non-AC
+
+                      {/* Content */}
+                      <div className="flex-1 flex flex-col py-1 pr-2 sm:pr-4 justify-between h-full">
+                        <div>
+                          <h3 className="text-lg sm:text-2xl font-bold text-gray-900 tracking-tight leading-tight mb-1">{vehicle.name}</h3>
+
+                          <div className="flex items-center gap-2 text-[11px] sm:text-xs text-gray-500 mb-3">
+                            <span>{vehicle.filter}</span>
+                            <span className="w-1 h-1 rounded-full bg-gray-300"></span>
+                            <span>{vehicle.category}</span>
+                          </div>
+
+                          <div className="hidden sm:flex items-center gap-5 text-[11px] text-gray-500 font-medium mb-1">
+                            <div className="flex items-center gap-1.5">
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" /><path d="M12 14a4 4 0 0 0-4 4" /><path d="M16 18a4 4 0 0 0-4-4" /></svg>
+                              Auto/Manual
+                            </div>
+                            <div className="flex items-center gap-1.5">
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 22h12" /><path d="M5 22V4c0-1.1.9-2 2-2h4c1.1 0 2 .9 2 2v18" /><path d="M13 14V4" /><path d="M21 16V9a2 2 0 0 0-2-2h-3" /><path d="M21 16a2 2 0 0 1-2 2h-1" /><circle cx="9" cy="9" r="2" /></svg>
+                              AC / Non-AC
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="flex justify-between items-end mt-4">
+                          <div>
+                            {vehicle.oldPrice && <p className="text-[10px] text-gray-400 line-through mb-0.5">{vehicle.oldPrice}</p>}
+                            <p className="text-base sm:text-lg font-bold text-gray-900 leading-none tracking-tight">
+                              {vehicle.price} <span className="text-[10px] sm:text-xs text-gray-500 font-normal ml-0.5">{vehicle.priceUnit}</span>
+                            </p>
+                          </div>
+
+                          <button onClick={() => setBookingModalOpen(true)} className="px-5 py-2 sm:px-6 sm:py-2.5 bg-[#1A1A1A] text-white rounded-full text-xs sm:text-sm font-bold hover:bg-[var(--color-primary)] transition-colors shrink-0">
+                            Book Now
+                          </button>
+                        </div>
                       </div>
+
                     </div>
-                  </div>
-                  
-                  <div className="flex justify-between items-end mt-4">
-                    <div>
-                      {vehicle.oldPrice && <p className="text-[10px] text-gray-400 line-through mb-0.5">{vehicle.oldPrice}</p>}
-                      <p className="text-base sm:text-lg font-bold text-gray-900 leading-none tracking-tight">
-                        {vehicle.price} <span className="text-[10px] sm:text-xs text-gray-500 font-normal ml-0.5">{vehicle.priceUnit}</span>
-                      </p>
-                    </div>
-                    
-                    <a href="#contact" className="px-5 py-2 sm:px-6 sm:py-2.5 bg-[#1A1A1A] text-white rounded-full text-xs sm:text-sm font-bold hover:bg-[var(--color-primary)] transition-colors shrink-0">
-                      Book Now
-                    </a>
-                  </div>
+                  ))}
                 </div>
-                
+              ))}
+            </div>
+
+            {/* Right Arrow */}
+            <button
+              onClick={() => scrollVehicles('right')}
+              className="absolute right-0 top-1/2 -translate-y-1/2 bg-white w-10 h-10 flex items-center justify-center rounded-full shadow-lg z-10 text-gray-800 hover:text-[var(--color-primary)] hover:scale-110 transition-all opacity-0 group-hover:opacity-100 hidden sm:flex"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
+            {/* Dots Indicator */}
+            {vehicleChunks.length > 1 && (
+              <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 flex justify-center gap-2">
+                {vehicleChunks.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => scrollToVehicleChunk(i)}
+                    className={`w-2.5 h-2.5 rounded-full transition-colors ${activeVehicleChunk === i ? 'bg-white' : 'bg-white/40 hover:bg-white/60'}`}
+                    aria-label={`Go to slide ${i + 1}`}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Indore Local Sightseeing */}
+      <section id="indore-tours" className="pt-6 pb-2 md:pt-10 md:pb-4 bg-gray-50">
+        <div className="w-[90%] mx-auto max-w-none">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-medium text-gray-900 mb-4 tracking-tight">Indore Local Sightseeing</h2>
+            <p className="text-lg text-gray-500 max-w-2xl mx-auto font-light">Discover the vibrant culture, history, and flavors of Indore.</p>
+          </div>
+
+          {/* Horizontal scroll layout for indore sightseeing */}
+          <div ref={indoreRef} className="flex overflow-x-auto pb-4 pt-4 gap-6 md:gap-8 snap-x snap-mandatory hide-scrollbar justify-start">
+            {[
+              { name: 'Khajrana Ganesh Temple', img: '/destination/KhajranaGanesh .jpg' },
+              { name: 'Rajwada Palace', img: '/destination/Rajwadapalace.jpg' },
+              { name: 'Lal Bagh Palace', img: '/destination/Lalbagpalace.jpg' },
+              { name: '56 Shop', img: '/destination/56Shop.jpg' },
+              { name: 'Zoo', img: '/destination/Indorelocal.jpg' },
+              { name: 'Annapurna Temple', img: '/destination/Annapurnmandir.jpg' }
+            ].map((dest, i) => (
+              <div key={i} className="snap-start shrink-0 flex flex-col items-center group cursor-pointer w-[140px] sm:w-[160px] md:w-40">
+                <div className="w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] md:w-40 md:h-40 rounded-full overflow-hidden mb-4 shadow-sm border border-gray-100 group-hover:shadow-md transition-shadow">
+                  <img src={dest.img} alt={dest.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                </div>
+                <h3 className="text-gray-900 font-semibold text-base md:text-lg text-center">{dest.name}</h3>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* State-wise Tours */}
+      <section id="states" className="pt-12 pb-12 md:pt-16 md:pb-16 bg-[#1e7123]">
+        <div className="w-[90%] mx-auto max-w-none">
+          <div className="text-center mb-10 md:mb-16 px-4">
+            <h2 className="text-3xl md:text-4xl font-medium text-white mb-4 tracking-tight">Explore by State</h2>
+            <p className="text-base sm:text-lg text-gray-100 opacity-90 max-w-2xl mx-auto font-light leading-relaxed">
+              Find the best <span className="font-medium text-green-200">travel packages</span> and <span className="font-medium text-green-200">destinations</span> across India.
+            </p>
+          </div>
+
+          {/* List layout for states matching the new design */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 pt-4 pb-4">
+            {[
+              { name: 'Rajasthan', img: '/explorebystate/rajasthan.jpg', slug: 'rajasthan', title: 'Explore majestic forts and palaces in Rajasthan' },
+              { name: 'Maharashtra', img: '/explorebystate/Maharastra.jpg', slug: 'maharashtra', title: 'Discover the ancient caves and temples of Maharashtra' },
+              { name: 'Gujarat', img: '/explorebystate/Gujarat.jpg', slug: 'gujarat', title: 'Uncover the vibrant culture and wildlife of Gujarat' },
+              { name: 'Uttar Pradesh', img: '/explorebystate/uttarpradesh.jpg', slug: 'uttar-pradesh', title: 'Wandering through the sacred streets of Uttar Pradesh' },
+              { name: 'Uttarakhand', img: '/explorebystate/uttrakhand.jpg', slug: 'uttarakhand', title: 'Experience the divine beauty of Devbhoomi Uttarakhand' },
+              { name: 'Madhya Pradesh', img: '/explorebystate/madhyapradesh.jpg', slug: 'madhya-pradesh', title: 'Journey into the historic heartland of Madhya Pradesh' },
+            ].map((state, i) => (
+              <a href={`/states/${state.slug}`} key={i} className="flex flex-row items-center gap-4 group cursor-pointer w-full bg-white p-3 sm:p-4 rounded-xl shadow-sm hover:shadow-lg transition-all border border-gray-100/10">
+                <div className="w-[120px] h-[80px] sm:w-[150px] sm:h-[100px] shrink-0 overflow-hidden bg-gray-100 rounded-md">
+                  <img src={state.img} alt={state.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+                <div className="flex flex-col justify-center">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 group-hover:text-[#1e7123] transition-colors leading-tight mb-1">
+                    {state.name}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">
+                    {state.title}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Services Section */}
-      <section id="services" className="py-12 md:py-16 bg-[#F8F9FA]">
+      <section id="services" className="py-12 md:py-16 bg-white">
         <div className="w-[90%] mx-auto max-w-none">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-medium text-gray-900 tracking-tight mb-2">Our Services</h2>
@@ -394,10 +562,7 @@ export default function Home() {
             {[
               { title: "Vintage Car Hire", img: "/Survices/Vintage.jpg" },
               { title: "Luxury Car Rent", img: "/Survices/LuxuryCarRent.jpg" },
-              { title: "Char Dham Yatra", img: "/destination/CharDham.jpg" },
-              { title: "Narmada Parikrama", img: "/destination/Narmada.jpg" },
               { title: "South Tour", img: "/destination/South.jpg" },
-              { title: "Jain Tour", img: "/destination/jaintour.jpg" },
               { title: "Tour Packages", img: "/Survices/TourPackages.jpg" },
               { title: "Bus Booking", img: "/Survices/busbooking.jpg" },
               { title: "Airport Transfer", img: "/Survices/Airport.jpg" },
@@ -410,12 +575,12 @@ export default function Home() {
               { title: "Group Travel", img: "/Survices/grouptravel.jpg" },
               { title: "Round Trip", img: "/Survices/Roundtrip.jpg" },
             ].map((service, i) => (
-              <div key={i} className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5 group cursor-pointer p-2 sm:p-0 bg-white sm:bg-transparent rounded-lg shadow-sm sm:shadow-none border border-gray-100 sm:border-none">
-                <div className="w-full sm:w-40 h-24 sm:h-28 shrink-0 overflow-hidden shadow-sm rounded-md sm:rounded-none">
+              <div key={i} className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5 group cursor-pointer p-2 sm:p-4 bg-white rounded-lg shadow-sm hover:shadow-md border border-gray-100 sm:border-transparent transition-all">
+                <div className="w-full sm:w-40 h-24 sm:h-28 shrink-0 overflow-hidden shadow-sm rounded-md sm:rounded-lg">
                   <img src={service.img} alt={service.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="flex flex-col justify-center mt-1 sm:mt-0">
-                  <p className="text-[10px] sm:text-[13px] text-gray-500 sm:text-gray-900 mb-0.5 sm:mb-1.5 font-medium leading-tight">
+                  <p className="text-[10px] sm:text-[13px] text-gray-500 mb-0.5 sm:mb-1.5 font-medium leading-tight">
                     Available by <span className="italic underline underline-offset-2">Travel with Rahul</span>
                   </p>
                   <h3 className="text-sm sm:text-lg md:text-xl font-bold text-gray-900 leading-tight group-hover:text-[var(--color-primary)] transition-colors">
@@ -435,14 +600,14 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-medium text-gray-900 tracking-tight mb-2">Why Choose Us</h2>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto font-light mb-8">Experience the difference with our commitment to quality, comfort, and reliability.</p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16 text-center">
-            
+
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-12 gap-y-12 md:gap-y-16 text-center">
+
             {/* Comfortable Vehicles */}
             <div className="flex flex-col items-center group">
-              <div className="relative w-28 h-28 flex items-center justify-center mb-6">
+              <div className="relative w-20 h-20 md:w-28 md:h-28 flex items-center justify-center mb-6 mx-auto">
                 <svg className="absolute inset-0 w-full h-full text-[#F0F5F0] transition-transform duration-500 group-hover:scale-105" viewBox="0 0 100 100" fill="currentColor">
-                  <path d="M50 2 A 4 4 0 0 1 54 4 L 57 11 A 4 4 0 0 0 62 14 L 69 13 A 4 4 0 0 1 73 17 L 74 24 A 4 4 0 0 0 78 28 L 84 31 A 4 4 0 0 1 87 37 L 83 43 A 4 4 0 0 0 83 49 L 87 55 A 4 4 0 0 1 84 61 L 78 64 A 4 4 0 0 0 74 68 L 73 75 A 4 4 0 0 1 69 79 L 62 78 A 4 4 0 0 0 57 81 L 54 88 A 4 4 0 0 1 50 90 A 4 4 0 0 1 46 88 L 43 81 A 4 4 0 0 0 38 78 L 31 79 A 4 4 0 0 1 27 75 L 26 68 A 4 4 0 0 0 22 64 L 16 61 A 4 4 0 0 1 13 55 L 17 49 A 4 4 0 0 0 17 43 L 13 37 A 4 4 0 0 1 16 31 L 22 28 A 4 4 0 0 0 26 24 L 27 17 A 4 4 0 0 1 31 13 L 38 14 A 4 4 0 0 0 43 11 L 46 4 A 4 4 0 0 1 50 2 Z"/>
+                  <path d="M50 2 A 4 4 0 0 1 54 4 L 57 11 A 4 4 0 0 0 62 14 L 69 13 A 4 4 0 0 1 73 17 L 74 24 A 4 4 0 0 0 78 28 L 84 31 A 4 4 0 0 1 87 37 L 83 43 A 4 4 0 0 0 83 49 L 87 55 A 4 4 0 0 1 84 61 L 78 64 A 4 4 0 0 0 74 68 L 73 75 A 4 4 0 0 1 69 79 L 62 78 A 4 4 0 0 0 57 81 L 54 88 A 4 4 0 0 1 50 90 A 4 4 0 0 1 46 88 L 43 81 A 4 4 0 0 0 38 78 L 31 79 A 4 4 0 0 1 27 75 L 26 68 A 4 4 0 0 0 22 64 L 16 61 A 4 4 0 0 1 13 55 L 17 49 A 4 4 0 0 0 17 43 L 13 37 A 4 4 0 0 1 16 31 L 22 28 A 4 4 0 0 0 26 24 L 27 17 A 4 4 0 0 1 31 13 L 38 14 A 4 4 0 0 0 43 11 L 46 4 A 4 4 0 0 1 50 2 Z" />
                 </svg>
                 <div className="relative z-10 text-[#3C5734]">
                   <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -455,15 +620,15 @@ export default function Home() {
                   </svg>
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 tracking-wide font-sans">Comfortable Vehicles</h3>
-              <p className="text-gray-500 font-medium text-sm leading-relaxed max-w-[280px]">Well-maintained vehicles for comfortable journeys, ensuring a smooth ride every time.</p>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 tracking-wide font-sans">Comfortable Vehicles</h3>
+              <p className="text-gray-500 font-medium text-xs md:text-sm leading-relaxed max-w-[280px] mx-auto">Well-maintained vehicles for comfortable journeys, ensuring a smooth ride every time.</p>
             </div>
 
             {/* Experienced Drivers */}
             <div className="flex flex-col items-center group">
-              <div className="relative w-28 h-28 flex items-center justify-center mb-6">
+              <div className="relative w-20 h-20 md:w-28 md:h-28 flex items-center justify-center mb-6 mx-auto">
                 <svg className="absolute inset-0 w-full h-full text-[#F0F5F0] transition-transform duration-500 group-hover:scale-105" viewBox="0 0 100 100" fill="currentColor">
-                  <path d="M50 2 A 4 4 0 0 1 54 4 L 57 11 A 4 4 0 0 0 62 14 L 69 13 A 4 4 0 0 1 73 17 L 74 24 A 4 4 0 0 0 78 28 L 84 31 A 4 4 0 0 1 87 37 L 83 43 A 4 4 0 0 0 83 49 L 87 55 A 4 4 0 0 1 84 61 L 78 64 A 4 4 0 0 0 74 68 L 73 75 A 4 4 0 0 1 69 79 L 62 78 A 4 4 0 0 0 57 81 L 54 88 A 4 4 0 0 1 50 90 A 4 4 0 0 1 46 88 L 43 81 A 4 4 0 0 0 38 78 L 31 79 A 4 4 0 0 1 27 75 L 26 68 A 4 4 0 0 0 22 64 L 16 61 A 4 4 0 0 1 13 55 L 17 49 A 4 4 0 0 0 17 43 L 13 37 A 4 4 0 0 1 16 31 L 22 28 A 4 4 0 0 0 26 24 L 27 17 A 4 4 0 0 1 31 13 L 38 14 A 4 4 0 0 0 43 11 L 46 4 A 4 4 0 0 1 50 2 Z"/>
+                  <path d="M50 2 A 4 4 0 0 1 54 4 L 57 11 A 4 4 0 0 0 62 14 L 69 13 A 4 4 0 0 1 73 17 L 74 24 A 4 4 0 0 0 78 28 L 84 31 A 4 4 0 0 1 87 37 L 83 43 A 4 4 0 0 0 83 49 L 87 55 A 4 4 0 0 1 84 61 L 78 64 A 4 4 0 0 0 74 68 L 73 75 A 4 4 0 0 1 69 79 L 62 78 A 4 4 0 0 0 57 81 L 54 88 A 4 4 0 0 1 50 90 A 4 4 0 0 1 46 88 L 43 81 A 4 4 0 0 0 38 78 L 31 79 A 4 4 0 0 1 27 75 L 26 68 A 4 4 0 0 0 22 64 L 16 61 A 4 4 0 0 1 13 55 L 17 49 A 4 4 0 0 0 17 43 L 13 37 A 4 4 0 0 1 16 31 L 22 28 A 4 4 0 0 0 26 24 L 27 17 A 4 4 0 0 1 31 13 L 38 14 A 4 4 0 0 0 43 11 L 46 4 A 4 4 0 0 1 50 2 Z" />
                 </svg>
                 <div className="relative z-10 text-[#3C5734]">
                   <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -476,15 +641,15 @@ export default function Home() {
                   </svg>
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 tracking-wide font-sans">Experienced Drivers</h3>
-              <p className="text-gray-500 font-medium text-sm leading-relaxed max-w-[280px]">Professional drivers familiar with local and outstation routes for your safety.</p>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 tracking-wide font-sans">Experienced Drivers</h3>
+              <p className="text-gray-500 font-medium text-xs md:text-sm leading-relaxed max-w-[280px] mx-auto">Professional drivers familiar with local and outstation routes for your safety.</p>
             </div>
 
             {/* Flexible Travel Options */}
             <div className="flex flex-col items-center group">
-              <div className="relative w-28 h-28 flex items-center justify-center mb-6">
+              <div className="relative w-20 h-20 md:w-28 md:h-28 flex items-center justify-center mb-6 mx-auto">
                 <svg className="absolute inset-0 w-full h-full text-[#F0F5F0] transition-transform duration-500 group-hover:scale-105" viewBox="0 0 100 100" fill="currentColor">
-                  <path d="M50 2 A 4 4 0 0 1 54 4 L 57 11 A 4 4 0 0 0 62 14 L 69 13 A 4 4 0 0 1 73 17 L 74 24 A 4 4 0 0 0 78 28 L 84 31 A 4 4 0 0 1 87 37 L 83 43 A 4 4 0 0 0 83 49 L 87 55 A 4 4 0 0 1 84 61 L 78 64 A 4 4 0 0 0 74 68 L 73 75 A 4 4 0 0 1 69 79 L 62 78 A 4 4 0 0 0 57 81 L 54 88 A 4 4 0 0 1 50 90 A 4 4 0 0 1 46 88 L 43 81 A 4 4 0 0 0 38 78 L 31 79 A 4 4 0 0 1 27 75 L 26 68 A 4 4 0 0 0 22 64 L 16 61 A 4 4 0 0 1 13 55 L 17 49 A 4 4 0 0 0 17 43 L 13 37 A 4 4 0 0 1 16 31 L 22 28 A 4 4 0 0 0 26 24 L 27 17 A 4 4 0 0 1 31 13 L 38 14 A 4 4 0 0 0 43 11 L 46 4 A 4 4 0 0 1 50 2 Z"/>
+                  <path d="M50 2 A 4 4 0 0 1 54 4 L 57 11 A 4 4 0 0 0 62 14 L 69 13 A 4 4 0 0 1 73 17 L 74 24 A 4 4 0 0 0 78 28 L 84 31 A 4 4 0 0 1 87 37 L 83 43 A 4 4 0 0 0 83 49 L 87 55 A 4 4 0 0 1 84 61 L 78 64 A 4 4 0 0 0 74 68 L 73 75 A 4 4 0 0 1 69 79 L 62 78 A 4 4 0 0 0 57 81 L 54 88 A 4 4 0 0 1 50 90 A 4 4 0 0 1 46 88 L 43 81 A 4 4 0 0 0 38 78 L 31 79 A 4 4 0 0 1 27 75 L 26 68 A 4 4 0 0 0 22 64 L 16 61 A 4 4 0 0 1 13 55 L 17 49 A 4 4 0 0 0 17 43 L 13 37 A 4 4 0 0 1 16 31 L 22 28 A 4 4 0 0 0 26 24 L 27 17 A 4 4 0 0 1 31 13 L 38 14 A 4 4 0 0 0 43 11 L 46 4 A 4 4 0 0 1 50 2 Z" />
                 </svg>
                 <div className="relative z-10 text-[#3C5734]">
                   <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -493,15 +658,15 @@ export default function Home() {
                   </svg>
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 tracking-wide font-sans">Flexible Travel Options</h3>
-              <p className="text-gray-500 font-medium text-sm leading-relaxed max-w-[280px]">One-way, round trip, day trips and fully customized journeys to suit your schedule.</p>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 tracking-wide font-sans">Flexible Travel Options</h3>
+              <p className="text-gray-500 font-medium text-xs md:text-sm leading-relaxed max-w-[280px] mx-auto">One-way, round trip, day trips and fully customized journeys to suit your schedule.</p>
             </div>
-            
+
             {/* Family & Group Friendly */}
             <div className="flex flex-col items-center group">
-              <div className="relative w-28 h-28 flex items-center justify-center mb-6">
+              <div className="relative w-20 h-20 md:w-28 md:h-28 flex items-center justify-center mb-6 mx-auto">
                 <svg className="absolute inset-0 w-full h-full text-[#F0F5F0] transition-transform duration-500 group-hover:scale-105" viewBox="0 0 100 100" fill="currentColor">
-                  <path d="M50 2 A 4 4 0 0 1 54 4 L 57 11 A 4 4 0 0 0 62 14 L 69 13 A 4 4 0 0 1 73 17 L 74 24 A 4 4 0 0 0 78 28 L 84 31 A 4 4 0 0 1 87 37 L 83 43 A 4 4 0 0 0 83 49 L 87 55 A 4 4 0 0 1 84 61 L 78 64 A 4 4 0 0 0 74 68 L 73 75 A 4 4 0 0 1 69 79 L 62 78 A 4 4 0 0 0 57 81 L 54 88 A 4 4 0 0 1 50 90 A 4 4 0 0 1 46 88 L 43 81 A 4 4 0 0 0 38 78 L 31 79 A 4 4 0 0 1 27 75 L 26 68 A 4 4 0 0 0 22 64 L 16 61 A 4 4 0 0 1 13 55 L 17 49 A 4 4 0 0 0 17 43 L 13 37 A 4 4 0 0 1 16 31 L 22 28 A 4 4 0 0 0 26 24 L 27 17 A 4 4 0 0 1 31 13 L 38 14 A 4 4 0 0 0 43 11 L 46 4 A 4 4 0 0 1 50 2 Z"/>
+                  <path d="M50 2 A 4 4 0 0 1 54 4 L 57 11 A 4 4 0 0 0 62 14 L 69 13 A 4 4 0 0 1 73 17 L 74 24 A 4 4 0 0 0 78 28 L 84 31 A 4 4 0 0 1 87 37 L 83 43 A 4 4 0 0 0 83 49 L 87 55 A 4 4 0 0 1 84 61 L 78 64 A 4 4 0 0 0 74 68 L 73 75 A 4 4 0 0 1 69 79 L 62 78 A 4 4 0 0 0 57 81 L 54 88 A 4 4 0 0 1 50 90 A 4 4 0 0 1 46 88 L 43 81 A 4 4 0 0 0 38 78 L 31 79 A 4 4 0 0 1 27 75 L 26 68 A 4 4 0 0 0 22 64 L 16 61 A 4 4 0 0 1 13 55 L 17 49 A 4 4 0 0 0 17 43 L 13 37 A 4 4 0 0 1 16 31 L 22 28 A 4 4 0 0 0 26 24 L 27 17 A 4 4 0 0 1 31 13 L 38 14 A 4 4 0 0 0 43 11 L 46 4 A 4 4 0 0 1 50 2 Z" />
                 </svg>
                 <div className="relative z-10 text-[#3C5734]">
                   <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -512,15 +677,15 @@ export default function Home() {
                   </svg>
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 tracking-wide font-sans">Family & Group Friendly</h3>
-              <p className="text-gray-500 font-medium text-sm leading-relaxed max-w-[280px]">Vehicles suitable for couples, families and large groups looking for space and comfort.</p>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 tracking-wide font-sans">Family & Group Friendly</h3>
+              <p className="text-gray-500 font-medium text-xs md:text-sm leading-relaxed max-w-[280px] mx-auto">Vehicles suitable for couples, families and large groups looking for space and comfort.</p>
             </div>
 
             {/* 24/7 Support */}
             <div className="flex flex-col items-center group">
-              <div className="relative w-28 h-28 flex items-center justify-center mb-6">
+              <div className="relative w-20 h-20 md:w-28 md:h-28 flex items-center justify-center mb-6 mx-auto">
                 <svg className="absolute inset-0 w-full h-full text-[#F0F5F0] transition-transform duration-500 group-hover:scale-105" viewBox="0 0 100 100" fill="currentColor">
-                  <path d="M50 2 A 4 4 0 0 1 54 4 L 57 11 A 4 4 0 0 0 62 14 L 69 13 A 4 4 0 0 1 73 17 L 74 24 A 4 4 0 0 0 78 28 L 84 31 A 4 4 0 0 1 87 37 L 83 43 A 4 4 0 0 0 83 49 L 87 55 A 4 4 0 0 1 84 61 L 78 64 A 4 4 0 0 0 74 68 L 73 75 A 4 4 0 0 1 69 79 L 62 78 A 4 4 0 0 0 57 81 L 54 88 A 4 4 0 0 1 50 90 A 4 4 0 0 1 46 88 L 43 81 A 4 4 0 0 0 38 78 L 31 79 A 4 4 0 0 1 27 75 L 26 68 A 4 4 0 0 0 22 64 L 16 61 A 4 4 0 0 1 13 55 L 17 49 A 4 4 0 0 0 17 43 L 13 37 A 4 4 0 0 1 16 31 L 22 28 A 4 4 0 0 0 26 24 L 27 17 A 4 4 0 0 1 31 13 L 38 14 A 4 4 0 0 0 43 11 L 46 4 A 4 4 0 0 1 50 2 Z"/>
+                  <path d="M50 2 A 4 4 0 0 1 54 4 L 57 11 A 4 4 0 0 0 62 14 L 69 13 A 4 4 0 0 1 73 17 L 74 24 A 4 4 0 0 0 78 28 L 84 31 A 4 4 0 0 1 87 37 L 83 43 A 4 4 0 0 0 83 49 L 87 55 A 4 4 0 0 1 84 61 L 78 64 A 4 4 0 0 0 74 68 L 73 75 A 4 4 0 0 1 69 79 L 62 78 A 4 4 0 0 0 57 81 L 54 88 A 4 4 0 0 1 50 90 A 4 4 0 0 1 46 88 L 43 81 A 4 4 0 0 0 38 78 L 31 79 A 4 4 0 0 1 27 75 L 26 68 A 4 4 0 0 0 22 64 L 16 61 A 4 4 0 0 1 13 55 L 17 49 A 4 4 0 0 0 17 43 L 13 37 A 4 4 0 0 1 16 31 L 22 28 A 4 4 0 0 0 26 24 L 27 17 A 4 4 0 0 1 31 13 L 38 14 A 4 4 0 0 0 43 11 L 46 4 A 4 4 0 0 1 50 2 Z" />
                 </svg>
                 <div className="relative z-10 text-[#3C5734]">
                   <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -529,15 +694,15 @@ export default function Home() {
                   </svg>
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 tracking-wide font-sans">24/7 Support</h3>
-              <p className="text-gray-500 font-medium text-sm leading-relaxed max-w-[280px]">Dedicated assistance before and during your journey for ultimate peace of mind.</p>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 tracking-wide font-sans">24/7 Support</h3>
+              <p className="text-gray-500 font-medium text-xs md:text-sm leading-relaxed max-w-[280px] mx-auto">Dedicated assistance before and during your journey for ultimate peace of mind.</p>
             </div>
 
             {/* Transparent Booking */}
             <div className="flex flex-col items-center group">
-              <div className="relative w-28 h-28 flex items-center justify-center mb-6">
+              <div className="relative w-20 h-20 md:w-28 md:h-28 flex items-center justify-center mb-6 mx-auto">
                 <svg className="absolute inset-0 w-full h-full text-[#F0F5F0] transition-transform duration-500 group-hover:scale-105" viewBox="0 0 100 100" fill="currentColor">
-                  <path d="M50 2 A 4 4 0 0 1 54 4 L 57 11 A 4 4 0 0 0 62 14 L 69 13 A 4 4 0 0 1 73 17 L 74 24 A 4 4 0 0 0 78 28 L 84 31 A 4 4 0 0 1 87 37 L 83 43 A 4 4 0 0 0 83 49 L 87 55 A 4 4 0 0 1 84 61 L 78 64 A 4 4 0 0 0 74 68 L 73 75 A 4 4 0 0 1 69 79 L 62 78 A 4 4 0 0 0 57 81 L 54 88 A 4 4 0 0 1 50 90 A 4 4 0 0 1 46 88 L 43 81 A 4 4 0 0 0 38 78 L 31 79 A 4 4 0 0 1 27 75 L 26 68 A 4 4 0 0 0 22 64 L 16 61 A 4 4 0 0 1 13 55 L 17 49 A 4 4 0 0 0 17 43 L 13 37 A 4 4 0 0 1 16 31 L 22 28 A 4 4 0 0 0 26 24 L 27 17 A 4 4 0 0 1 31 13 L 38 14 A 4 4 0 0 0 43 11 L 46 4 A 4 4 0 0 1 50 2 Z"/>
+                  <path d="M50 2 A 4 4 0 0 1 54 4 L 57 11 A 4 4 0 0 0 62 14 L 69 13 A 4 4 0 0 1 73 17 L 74 24 A 4 4 0 0 0 78 28 L 84 31 A 4 4 0 0 1 87 37 L 83 43 A 4 4 0 0 0 83 49 L 87 55 A 4 4 0 0 1 84 61 L 78 64 A 4 4 0 0 0 74 68 L 73 75 A 4 4 0 0 1 69 79 L 62 78 A 4 4 0 0 0 57 81 L 54 88 A 4 4 0 0 1 50 90 A 4 4 0 0 1 46 88 L 43 81 A 4 4 0 0 0 38 78 L 31 79 A 4 4 0 0 1 27 75 L 26 68 A 4 4 0 0 0 22 64 L 16 61 A 4 4 0 0 1 13 55 L 17 49 A 4 4 0 0 0 17 43 L 13 37 A 4 4 0 0 1 16 31 L 22 28 A 4 4 0 0 0 26 24 L 27 17 A 4 4 0 0 1 31 13 L 38 14 A 4 4 0 0 0 43 11 L 46 4 A 4 4 0 0 1 50 2 Z" />
                 </svg>
                 <div className="relative z-10 text-[#3C5734]">
                   <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -546,10 +711,10 @@ export default function Home() {
                   </svg>
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 tracking-wide font-sans">Transparent Booking</h3>
-              <p className="text-gray-500 font-medium text-sm leading-relaxed max-w-[280px]">Clear communication about vehicle, trip requirements, and pricing with zero hidden fees.</p>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 tracking-wide font-sans">Transparent Booking</h3>
+              <p className="text-gray-500 font-medium text-xs md:text-sm leading-relaxed max-w-[280px] mx-auto">Clear communication about vehicle, trip requirements, and pricing with zero hidden fees.</p>
             </div>
-            
+
           </div>
         </div>
       </section>
@@ -560,13 +725,13 @@ export default function Home() {
 
 
       {/* Google Reviews */}
-      <section id="reviews" className="py-12 md:py-16 bg-[#1e7123]">
+      <section id="reviews" className="pt-12 pb-8 md:pt-16 md:pb-10 bg-[#1e7123]">
         <div className="w-[90%] mx-auto max-w-none text-center">
 
           <h2 className="text-3xl md:text-4xl font-medium text-white tracking-tight mb-2">What Our Customers Say</h2>
           <p className="text-lg text-white/80 max-w-2xl mx-auto font-light mb-12"><strong>4.9/5</strong> based on over 100+ Google Reviews.</p>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-12 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 max-w-6xl mx-auto">
             {[
               { name: "Shilpa Jain", text: "Very gud and experienced driver which guides u very well about city and drive very smoothly and wait very patiently ....definitely i recommend Rahul tour and travels to everyone who wants safe and secure journey...", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=150&auto=format&fit=crop" },
               { name: "Milind Nagdive", text: "Good service provider, fair price ,excellent and safe driving skills and well maintained car. Also knowledgeable regarding travelling. I suggest those who wanted to spend their best tour they can take Rahul tour and travels 😊😊👍", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&auto=format&fit=crop" },
@@ -640,134 +805,89 @@ export default function Home() {
 
 
 
-      {/* Travel Memories */}
-      <section className="pt-8 md:pt-12 pb-12 md:pb-16 bg-white border-t border-gray-100">
-        <div className="w-[90%] mx-auto max-w-none text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-medium text-gray-900 tracking-tight mb-2">Travel Memories</h2>
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto font-light mb-8">A glimpse into the beautiful journeys we've hosted.</p>
-        </div>
-        <div className="w-[90%] mx-auto max-w-5xl">
-          <div className="grid grid-cols-5 gap-2 md:gap-4 auto-rows-[160px] md:auto-rows-[280px]">
-            {/* Top Left: Wide */}
-            <div className="col-span-3 relative h-full group rounded-xl overflow-hidden shadow-sm">
-              <img src="/destination/Mahakaleshwar .jpg" alt="Mahakaleshwar" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            </div>
-            
-            {/* Top Right: Arched Top */}
-            <div className="col-span-2 relative h-full group overflow-hidden shadow-sm" style={{ borderTopLeftRadius: '9999px', borderTopRightRadius: '9999px', borderBottomLeftRadius: '12px', borderBottomRightRadius: '12px' }}>
-              <img src="/destination/Omkareshwar .jpg" alt="Omkareshwar" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            </div>
-            
-            {/* Middle Left: Narrow */}
-            <div className="col-span-2 relative h-full group rounded-xl overflow-hidden shadow-sm">
-              <img src="/destination/Mandu.jpg" alt="Mandu" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            </div>
-            
-            {/* Middle Right: Wide */}
-            <div className="col-span-3 relative h-full group rounded-xl overflow-hidden shadow-sm">
-              <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=800&auto=format&fit=crop" alt="Family Trips" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            </div>
-            
-            {/* Bottom: Full Width Panoramic */}
-            <div className="col-span-5 relative h-full group rounded-xl overflow-hidden shadow-sm">
-              <img src="/destination/MaheshwarFort.jpg" alt="Maheshwar" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
-      <footer id="contact" className="bg-[#242424] text-gray-400 py-24 font-sans">
-        <div className="w-[90%] mx-auto max-w-7xl grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-8 items-start">
-          
-          {/* Brand & About */}
-          <div className="col-span-2 md:col-span-3 lg:col-span-1 flex flex-col items-start mb-4 lg:mb-0">
-            <a href="#" className="mb-6 inline-block">
-              <img src="/logo/logo1.png" alt="Travel with Rahul" className="w-48 md:w-56 h-auto object-contain" />
-            </a>
-            <p className="text-gray-400 text-sm font-light leading-relaxed mb-6">
-              Experience the best travel and rental services in Indore. We provide safe, comfortable, and reliable journeys for all your travel needs.
-            </p>
-            <div className="flex gap-4">
-              <a href="https://www.instagram.com/travel_with_rahu1?utm_source=qr&stkn=ZjdrZ3cwY2U0b2ky" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-gray-700 flex items-center justify-center text-gray-400 hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)] transition-all">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fillRule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clipRule="evenodd" />
-                </svg>
-              </a>
-            </div>
-          </div>
+      <footer id="contact" className="bg-[#1e7123] text-gray-200 py-24 font-sans">
+        <div className="w-[90%] mx-auto max-w-7xl grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-8 items-start">
 
           {/* Quick Links */}
-          <div className="col-span-1 flex flex-col items-start lg:ml-8">
-            <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-[var(--color-primary)]">Quick Links</h3>
-            <ul className="flex flex-col space-y-3 text-gray-400 font-light text-sm">
+          <div className="col-span-1 flex flex-col items-start">
+            <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-white/50">Quick Links</h3>
+            <ul className="flex flex-col space-y-3 text-white/80 font-light text-sm">
               <li><a href="#" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Home</a></li>
               <li><a href="#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Destinations</a></li>
+              <li><a href="#indore-tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Indore Local</a></li>
+              <li><a href="#states" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Explore by State</a></li>
               <li><a href="#vehicles" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Vehicles</a></li>
               <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Services</a></li>
               <li><a href="#reviews" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Reviews</a></li>
+              <li><a href="#contact" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Contact Us</a></li>
             </ul>
           </div>
 
           {/* Destinations */}
           <div className="col-span-1 flex flex-col items-start">
-            <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-[var(--color-primary)]">Destinations</h3>
-            <ul className="flex flex-col space-y-3 text-gray-400 font-light text-sm">
-              <li><a href="#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Baglamukhi Temple</a></li>
-              <li><a href="#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Indore Local</a></li>
-              <li><a href="#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Khajrana Ganesh</a></li>
-              <li><a href="#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Mahakaleshwar</a></li>
-              <li><a href="#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Jaisalmer Safari</a></li>
+            <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-white/50">Destinations</h3>
+            <ul className="flex flex-col space-y-3 text-white/80 font-light text-sm">
+              <li><a href="#indore-tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Indore Sightseeing</a></li>
+              <li><a href="#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Ujjain Mahakaleshwar</a></li>
+              <li><a href="#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Omkareshwar</a></li>
+              <li><a href="#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Maheshwar</a></li>
+              <li><a href="#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Mandu</a></li>
               <li><a href="#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Pachmarhi Hill</a></li>
             </ul>
           </div>
 
           {/* Services */}
           <div className="col-span-1 flex flex-col items-start">
-            <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-[var(--color-primary)]">Our Services</h3>
-            <ul className="flex flex-col space-y-3 text-gray-400 font-light text-sm">
+            <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-white/50">Our Services</h3>
+            <ul className="flex flex-col space-y-3 text-white/80 font-light text-sm">
               <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Vintage Car Hire</a></li>
               <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Luxury Car Rent</a></li>
               <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Tour Packages</a></li>
               <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Bus Booking</a></li>
               <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Airport Transfer</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Corporate Travel</a></li>
               <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Wedding Car Rental</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Char Dham Yatra</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Narmada Parikrama</a></li>
             </ul>
           </div>
 
           {/* Contact Info */}
-          <div className="col-span-2 md:col-span-3 lg:col-span-1 flex flex-col items-start mt-4 lg:mt-0">
-            <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-[var(--color-primary)]">Contact Us</h3>
-            <ul className="flex flex-col space-y-4 text-gray-400 font-light text-sm">
+          <div className="col-span-2 md:col-span-1 flex flex-col items-start mt-4 md:mt-0">
+            <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-white/50">Contact Us</h3>
+            <ul className="flex flex-col space-y-4 text-white/80 font-light text-sm">
               <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-[var(--color-primary)] shrink-0 mt-0.5" />
+                <MapPin className="w-5 h-5 text-white/60 shrink-0 mt-0.5" />
                 <span>Indore, Madhya Pradesh, India</span>
               </li>
               <li className="flex items-start gap-3 mt-4">
-                <Phone className="w-5 h-5 text-[var(--color-primary)] shrink-0" />
+                <Phone className="w-5 h-5 text-white/60 shrink-0" />
                 <div className="flex flex-col">
                   <a href="tel:08989299997" className="hover:text-white transition-colors">089892 99997</a>
                   <a href="tel:09111135812" className="hover:text-white transition-colors mt-1">091111 35812</a>
                 </div>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-[var(--color-primary)] shrink-0" />
+                <Mail className="w-5 h-5 text-white/60 shrink-0" />
                 <a href="mailto:travelsrahul23@gmail.com" className="hover:text-white transition-colors">travelsrahul23@gmail.com</a>
+              </li>
+              <li className="flex items-center gap-3">
+                <WhatsApp className="w-5 h-5 text-white/60 shrink-0" />
+                <a href="https://wa.me/918989299997" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Chat on WhatsApp</a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Instagram className="w-5 h-5 text-white/60 shrink-0" />
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Follow on Instagram</a>
               </li>
             </ul>
           </div>
-          
+
         </div>
 
         {/* Bottom Bar */}
-        <div className="w-[90%] mx-auto max-w-7xl mt-20 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 font-light">
+        <div className="w-[90%] mx-auto max-w-7xl mt-20 pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/60 font-light">
           <p>© {new Date().getFullYear()} Rahul Tour & Travels. All Rights Reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-gray-300 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-gray-300 transition-colors">Terms & Conditions</a>
+            <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="/terms-and-conditions" className="hover:text-white transition-colors">Terms & Conditions</a>
           </div>
         </div>
       </footer>
@@ -777,6 +897,13 @@ export default function Home() {
 
       {/* Floating Action Buttons */}
       <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 flex flex-col gap-4">
+        {/* Call Button */}
+        <a href="tel:08989299997" className="flex items-center justify-center bg-gray-900 text-white w-16 h-16 md:w-20 md:h-20 rounded-full shadow-2xl hover:scale-110 transition-transform group relative border-2 border-white/20">
+          <Phone className="w-8 h-8 md:w-10 md:h-10" />
+          <span className="absolute right-full mr-4 bg-white text-gray-800 px-3 py-1 rounded shadow-lg text-sm font-bold opacity-0 md:group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+            Call us
+          </span>
+        </a>
 
         {/* WhatsApp Button */}
         <a href="https://wa.me/918989299997" target="_blank" rel="noreferrer" className="flex items-center justify-center bg-[#1e7123] text-white w-16 h-16 md:w-20 md:h-20 rounded-full shadow-2xl hover:scale-110 transition-transform group relative border-2 border-white/20">
@@ -786,6 +913,42 @@ export default function Home() {
           </span>
         </a>
       </div>
+
+      {/* Booking Modal */}
+      {bookingModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-0">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setBookingModalOpen(false)}></div>
+          <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden animate-fade-in-up scale-100">
+            <div className="p-6 text-center">
+              <button 
+                onClick={() => setBookingModalOpen(false)}
+                className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 bg-gray-100 rounded-full transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              
+              <div className="flex justify-center mx-auto mb-4">
+                <img src="/logo/logo1.png" alt="Travel with Rahul" className="h-16 md:h-20 w-auto object-contain" />
+              </div>
+              
+              <h3 className="text-2xl font-bold text-gray-900 mb-2 font-sans">Book a Trip or Rent a Car/Bus</h3>
+              <p className="text-gray-600 mb-6 text-[15px]">
+                Online booking is coming soon! For now, you can quickly book your trip or rental via WhatsApp or Call us directly.
+              </p>
+              
+              <div className="flex flex-col gap-3">
+                <a href="https://wa.me/918989299997?text=Hi,%20I%20would%20like%20to%20book%20a%20trip/vehicle" target="_blank" rel="noreferrer" className="w-full bg-[#25D366] hover:bg-[#1DA851] text-white py-3.5 rounded-xl font-bold text-[16px] flex items-center justify-center gap-2 shadow-lg transition-transform hover:scale-[1.02]">
+                  <WhatsApp className="w-5 h-5" /> Book via WhatsApp
+                </a>
+                <a href="tel:08989299997" className="w-full bg-gray-900 hover:bg-black text-white py-3.5 rounded-xl font-bold text-[16px] flex items-center justify-center gap-2 shadow-lg transition-transform hover:scale-[1.02]">
+                  <Phone className="w-5 h-5" /> Call Now
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
+
