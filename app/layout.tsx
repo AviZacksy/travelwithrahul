@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Jost, Dancing_Script } from "next/font/google";
+import { Jost, Dancing_Script, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const jost = Jost({
@@ -9,6 +9,11 @@ const jost = Jost({
 
 const dancingScript = Dancing_Script({
   variable: "--font-dancing",
+  subsets: ["latin"],
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
 });
 
@@ -52,7 +57,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${jost.variable} ${dancingScript.variable} scroll-smooth`}>
+    <html lang="en" className={`${jost.variable} ${dancingScript.variable} ${playfair.variable} scroll-smooth`}>
       <body className="antialiased text-gray-800 bg-[#FAFAFA] font-sans">
         {children}
       </body>

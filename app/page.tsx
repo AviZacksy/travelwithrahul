@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { MapPin, Phone, Menu, X, Check, Star, MessageCircle, WhatsApp, Instagram, Mail, ChevronRight, ChevronDown, Plus, ChevronLeft } from "@/components/Icons";
+import { MapPin, Phone, Menu, X, Check, Star, MessageCircle, WhatsApp, Instagram, Mail, ChevronRight, ChevronDown, Plus, ChevronLeft, Compass } from "@/components/Icons";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -139,11 +139,14 @@ export default function Home() {
             </a>
           </div>
 
-          {/* Quick Contact Info for Mobile (Between Logo and Menu) */}
-          <div className="flex flex-col items-end justify-center text-[13px] sm:text-sm text-black font-semibold leading-snug ml-auto mr-4 lg:hidden">
-            <a href="tel:08989299997" className="flex items-center hover:text-[var(--color-primary)] mb-0.5">089892 99997 <Phone className="w-4 h-4 ml-1.5" /></a>
-            <a href="tel:09111135812" className="flex items-center hover:text-[var(--color-primary)] mb-0.5">091111 35812 <Phone className="w-4 h-4 ml-1.5" /></a>
-            <span className="flex items-center">Indore, MP <MapPin className="w-4 h-4 ml-1.5" /></span>
+          {/* Mobile Buttons (Between Logo and Menu) */}
+          <div className="flex flex-col lg:hidden items-stretch justify-center gap-2 sm:gap-2.5 ml-auto mr-3 sm:mr-5">
+            <button onClick={() => setBookingModalOpen(true)} className="bg-[#1e7123] text-white px-3 sm:px-4 py-2 sm:py-2.5 font-bold text-xs sm:text-sm hover:bg-[#155319] transition-all shadow-sm flex items-center justify-between gap-1.5 whitespace-nowrap border border-[#1e7123]">
+              <span>Book a Vehicle</span> <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            </button>
+            <a href="#tours" className="bg-white border border-gray-900 text-gray-900 px-3 sm:px-4 py-2 sm:py-2.5 font-bold text-xs sm:text-sm hover:bg-gray-50 transition-all shadow-sm flex items-center justify-between gap-1.5 whitespace-nowrap">
+              <span className="flex items-center gap-1.5"><Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> Explore Tours</span>
+            </a>
           </div>
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-10">
@@ -234,8 +237,27 @@ export default function Home() {
       )}
 
       {/* Mobile Hero Gallery Design (Original) */}
-      <section id="hero-gallery-mobile" className="pt-[110px] md:pt-[130px] pb-4 md:pb-10 bg-white overflow-hidden lg:hidden">
+      <section id="hero-gallery-mobile" className="pt-[140px] md:pt-[160px] pb-4 md:pb-10 bg-white overflow-hidden lg:hidden">
         <div className="w-[90%] mx-auto max-w-none">
+          {/* Mobile Hero Text */}
+          {/* <div className="mb-8 flex flex-col items-start text-left mt-4">
+            <span className="italic text-[var(--color-primary)] font-medium text-xl sm:text-2xl mb-3 font-serif">Welcome to Travel with Rahul</span>
+            <h1 className="text-[38px] sm:text-[44px] font-bold text-gray-900 leading-[1.15] mb-4 tracking-tight">
+              Your Trusted Tour <br/> & Travels Partner.
+            </h1>
+            <p className="text-gray-700 text-[17px] sm:text-lg leading-relaxed mb-6">
+              Book premium rental cars, luxury buses, and Force Travellers for local sightseeing and outstation trips. Experience safe and comfortable journeys.
+            </p>
+            <div className="flex flex-row gap-3 w-full sm:w-auto">
+              <button onClick={() => setBookingModalOpen(true)} className="flex-1 sm:flex-none bg-[#1e7123] text-white px-2 sm:px-6 py-3.5 font-bold text-sm sm:text-base hover:bg-[#155319] transition-all shadow-md flex items-center justify-center gap-1 sm:gap-2 whitespace-nowrap">
+                Book a Vehicle <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
+              <a href="#tours" className="flex-1 sm:flex-none bg-white border-2 border-gray-900 text-gray-900 px-2 sm:px-6 py-3.5 font-bold text-sm sm:text-base hover:bg-gray-50 transition-all shadow-sm flex items-center justify-center gap-1 sm:gap-2 whitespace-nowrap">
+                <Compass className="w-4 h-4 sm:w-5 sm:h-5" /> Explore Tours
+              </a>
+            </div>
+          </div> */}
+
           <div className="grid grid-cols-5 md:flex md:flex-row gap-2 md:gap-4 auto-rows-[200px] sm:auto-rows-[250px] md:auto-rows-auto md:h-[600px]">
             {/* Image 1: Normal Rectangle */}
             <div className="col-span-3 md:flex-1 relative h-full group overflow-hidden shrink-0">
@@ -258,7 +280,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-8 flex flex-row flex-wrap justify-center items-center gap-3 sm:gap-4">
+          {/* <div className="mt-8 flex flex-row flex-wrap justify-center items-center gap-3 sm:gap-4">
             <button onClick={() => setBookingModalOpen(true)} className="px-5 sm:px-6 bg-[#1e7123] hover:bg-[#155319] text-white py-3 border-2 border-transparent font-bold text-sm sm:text-base transition-all shadow-lg flex items-center justify-center">
               Book Tours
             </button>
@@ -268,7 +290,7 @@ export default function Home() {
             <a href="tel:08989299997" className="px-5 sm:px-6 bg-gray-900 hover:bg-black text-white py-3 border-2 border-transparent font-bold text-sm sm:text-base transition-all shadow-lg flex items-center justify-center gap-2">
               <Phone className="w-4 h-4" /> Call Now
             </a>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -280,22 +302,22 @@ export default function Home() {
             {/* Left Content */}
             <div className="w-full lg:w-1/2 flex flex-col justify-center">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-[var(--color-primary)] font-semibold text-sm mb-6 w-max border border-blue-100">
-                <Star className="w-4 h-4 fill-[var(--color-secondary)] text-[var(--color-secondary)]" /> Top Rated Travel Agency in Indore
+                <Star className="w-4 h-4 fill-[var(--color-secondary)] text-[var(--color-secondary)]" /> Welcome to Travel with Rahul
               </div>
               <h1 className="text-5xl lg:text-[4rem] font-bold text-gray-900 leading-[1.1] mb-6 tracking-tight font-sans">
-                Your Journey, <br />
-                <span className="text-[var(--color-primary)]">Our Priority.</span>
+                Your Trusted Tour <br />
+                <span className="text-[var(--color-primary)]">& Travels Partner.</span>
               </h1>
               <p className="text-lg text-gray-500 mb-8 max-w-md leading-relaxed font-light">
-                Experience premium comfort and safety with our wide range of luxury cars, buses, and Force Travellers for local and outstation trips.
+                Rent premium cars, luxury buses, and Force Travellers for local sightseeing and outstation trips. Experience safe, comfortable, and memorable journeys.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button onClick={() => setBookingModalOpen(true)} className="bg-[var(--color-primary)] text-white px-8 py-4 font-bold text-lg hover:bg-[#112240] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2">
+              <div className="flex flex-row gap-4">
+                <button onClick={() => setBookingModalOpen(true)} className="bg-[#1e7123] text-white px-8 py-4 font-bold text-lg hover:bg-[#155319] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2">
                   Book a Vehicle <ChevronRight className="w-5 h-5" />
                 </button>
-                <a href="tel:08989299997" className="bg-white border-2 border-gray-200 text-gray-800 px-8 py-4 font-bold text-lg hover:border-gray-300 hover:bg-gray-50 transition-all flex items-center justify-center gap-2">
-                  <Phone className="w-5 h-5" /> Contact Us
+                <a href="#tours" className="bg-white border-2 border-gray-900 text-gray-900 px-8 py-4 font-bold text-lg hover:bg-gray-50 transition-all shadow-sm flex items-center justify-center gap-2">
+                  <Compass className="w-5 h-5" /> Explore Tours
                 </a>
               </div>
 
