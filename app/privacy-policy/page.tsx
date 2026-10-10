@@ -19,7 +19,7 @@ export default function PrivacyPolicy() {
       </div>
 
       {/* Content */}
-      <div className="w-[90%] mx-auto max-w-4xl mt-10 bg-white p-6 md:p-10 rounded-xl shadow-sm border border-gray-100">
+      <div className="w-[95%] mx-auto max-w-4xl mt-10 bg-white p-6 md:p-10 rounded-xl shadow-sm border border-gray-100">
         <div className="space-y-8 text-gray-700 leading-relaxed font-light">
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">1. Information We Collect</h2>
@@ -79,7 +79,7 @@ export default function PrivacyPolicy() {
 
       {/* Footer */}
       <footer id="contact" className="bg-[#1e7123] text-gray-200 py-24 font-sans mt-20">
-        <div className="w-[90%] mx-auto max-w-7xl grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-8 items-start">
+        <div className="w-[95%] mx-auto max-w-7xl grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-8 items-start">
           {/* Quick Links */}
           <div className="col-span-1 flex flex-col items-start">
             <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-white/50">Quick Links</h3>
@@ -153,7 +153,7 @@ export default function PrivacyPolicy() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="w-[90%] mx-auto max-w-7xl mt-20 pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/60 font-light">
+        <div className="w-[95%] mx-auto max-w-7xl mt-20 pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/60 font-light">
           <p>© {new Date().getFullYear()} Rahul Tour & Travels. All Rights Reserved.</p>
           <div className="flex gap-6">
             <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>

@@ -52,7 +52,7 @@ export default function Home() {
           }
         }
       };
-      
+
       scrollIt(destinationsRef);
       scrollIt(indoreRef);
     }, 3000);
@@ -132,7 +132,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       {/* Navbar */}
       <nav className={`fixed w-full z-40 transition-all duration-300 bg-white ${isScrolled ? 'shadow-sm' : ''} py-1 top-0 border-b border-gray-100`}>
-        <div className="w-[95%] md:w-[90%] mx-auto max-w-none flex justify-between items-center gap-2">
+        <div className="w-[95%] md:w-[95%] mx-auto max-w-none flex justify-between items-center gap-2">
           <div className="flex flex-col items-start justify-center shrink-0">
             <a href="#" className="flex items-center">
               <img src="/logo/logo1.png" alt="Travel with Rahul" className="w-44 sm:w-52 md:w-64 h-auto object-contain transform origin-left hover:scale-105 transition-transform" />
@@ -140,11 +140,11 @@ export default function Home() {
           </div>
 
           {/* Mobile Buttons (Between Logo and Menu) */}
-          <div className="flex flex-col lg:hidden items-stretch justify-center gap-2 sm:gap-2.5 ml-auto mr-3 sm:mr-5">
-            <button onClick={() => setBookingModalOpen(true)} className="bg-[#1e7123] text-white px-3 sm:px-4 py-2 sm:py-2.5 font-bold text-xs sm:text-sm hover:bg-[#155319] transition-all shadow-sm flex items-center justify-between gap-1.5 whitespace-nowrap border border-[#1e7123]">
+          <div className="flex flex-col lg:hidden items-stretch justify-center gap-2 sm:gap-2 ml-auto mr-3 sm:mr-5 mb-1.5">
+            <button onClick={() => setBookingModalOpen(true)} className="bg-[#1e7123] text-white px-3 sm:px-4 py-2.5 sm:py-3 font-bold text-xs sm:text-sm hover:bg-[#155319] transition-all shadow-sm flex items-center justify-between gap-1.5 whitespace-nowrap border border-[#1e7123] rounded-full">
               <span>Book a Vehicle</span> <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
-            <a href="#tours" className="bg-white border border-gray-900 text-gray-900 px-3 sm:px-4 py-2 sm:py-2.5 font-bold text-xs sm:text-sm hover:bg-gray-50 transition-all shadow-sm flex items-center justify-between gap-1.5 whitespace-nowrap">
+            <a href="#tours" className="bg-white border border-gray-900 text-gray-900 px-3 sm:px-4 py-2.5 sm:py-3 font-bold text-xs sm:text-sm hover:bg-gray-50 transition-all shadow-sm flex items-center justify-between gap-1.5 whitespace-nowrap rounded-full">
               <span className="flex items-center gap-1.5"><Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> Explore Tours</span>
             </a>
           </div>
@@ -152,7 +152,7 @@ export default function Home() {
           <div className="hidden lg:flex items-center gap-10">
             <div className="flex gap-8 text-[15px] font-bold text-gray-800">
               <a href="#" className="hover:text-[#1e7123] border-b-2 border-transparent hover:border-[#1e7123] transition-all pb-1">Home</a>
-              
+
               <a href="#tours" className="hover:text-[#1e7123] border-b-2 border-transparent hover:border-[#1e7123] transition-all pb-1">Destinations</a>
               <a href="#indore-tours" className="hover:text-[#1e7123] border-b-2 border-transparent hover:border-[#1e7123] transition-all pb-1">Indore Local Sightseeing</a>
               <a href="#states" className="hover:text-[#1e7123] border-b-2 border-transparent hover:border-[#1e7123] transition-all pb-1">Explore by State</a>
@@ -162,7 +162,7 @@ export default function Home() {
               <a href="#contact" className="hover:text-[#1e7123] border-b-2 border-transparent hover:border-[#1e7123] transition-all pb-1">Contact</a>
               <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-[#1e7123] border-b-2 border-transparent hover:border-[#1e7123] transition-all pb-1">View Instagram</a>
             </div>
-            <button onClick={() => setBookingModalOpen(true)} className="bg-[#1e7123] text-white px-7 py-3 hover:bg-[#155319] transition-colors font-semibold flex items-center gap-2 shadow-md">
+            <button onClick={() => setBookingModalOpen(true)} className="bg-[#1e7123] text-white px-7 py-3 hover:bg-[#155319] transition-colors font-semibold flex items-center gap-2 shadow-md rounded-full">
               Book Now <ChevronRight className="w-4 h-4" />
             </button>
           </div>
@@ -238,7 +238,7 @@ export default function Home() {
 
       {/* Mobile Hero Gallery Design (Original) */}
       <section id="hero-gallery-mobile" className="pt-[140px] md:pt-[160px] pb-4 md:pb-10 bg-white overflow-hidden lg:hidden">
-        <div className="w-[90%] mx-auto max-w-none">
+        <div className="w-[95%] mx-auto max-w-none">
           {/* Mobile Hero Text */}
           {/* <div className="mb-8 flex flex-col items-start text-left mt-4">
             <span className="italic text-[var(--color-primary)] font-medium text-xl sm:text-2xl mb-3 font-serif">Welcome to Travel with Rahul</span>
@@ -296,7 +296,7 @@ export default function Home() {
 
       {/* Modern Split Hero Section (Desktop Only) */}
       <section id="home-desktop" className="hidden lg:block pt-[120px] md:pt-[150px] pb-12 md:pb-24 bg-white overflow-hidden">
-        <div className="w-[90%] mx-auto max-w-none">
+        <div className="w-[95%] mx-auto max-w-none">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
 
             {/* Left Content */}
@@ -313,10 +313,10 @@ export default function Home() {
               </p>
 
               <div className="flex flex-row gap-4">
-                <button onClick={() => setBookingModalOpen(true)} className="bg-[#1e7123] text-white px-8 py-4 font-bold text-lg hover:bg-[#155319] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2">
+                <button onClick={() => setBookingModalOpen(true)} className="bg-[#1e7123] text-white px-8 py-4 font-bold text-lg hover:bg-[#155319] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2 rounded-full">
                   Book a Vehicle <ChevronRight className="w-5 h-5" />
                 </button>
-                <a href="#tours" className="bg-white border-2 border-gray-900 text-gray-900 px-8 py-4 font-bold text-lg hover:bg-gray-50 transition-all shadow-sm flex items-center justify-center gap-2">
+                <a href="#tours" className="bg-white border-2 border-gray-900 text-gray-900 px-8 py-4 font-bold text-lg hover:bg-gray-50 transition-all shadow-sm flex items-center justify-center gap-2 rounded-full">
                   <Compass className="w-5 h-5" /> Explore Tours
                 </a>
               </div>
@@ -369,7 +369,7 @@ export default function Home() {
 
       {/* Popular Destinations / Favourite Destinations */}
       <section id="tours" className="pt-6 pb-2 md:pt-20 md:pb-4 bg-white">
-        <div className="w-[90%] mx-auto max-w-none">
+        <div className="w-[95%] mx-auto max-w-none">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-medium text-gray-900 mb-4 tracking-tight">Favourite Destinations</h2>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto font-light">Explore the most beautiful and spiritual places<br />with Travel with Rahul.</p>
@@ -411,7 +411,7 @@ export default function Home() {
 
       {/* Our Vehicles */}
       <section id="vehicles" className="pt-12 pb-12 md:pb-20 md:pt-16 bg-[#1e7123]">
-        <div className="w-[90%] mx-auto max-w-none">
+        <div className="w-[95%] mx-auto max-w-none">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-medium text-white tracking-tight mb-2">Vehicle Rental</h2>
             <p className="text-lg text-gray-100 max-w-2xl mx-auto font-light mb-8 opacity-90">Choose from our wide range of premium vehicles for your comfortable journey.</p>
@@ -468,7 +468,7 @@ export default function Home() {
                             </p>
                           </div>
 
-                          <button onClick={() => setBookingModalOpen(true)} className="px-5 py-2 sm:px-6 sm:py-2.5 bg-[#1A1A1A] text-white text-xs sm:text-sm font-bold hover:bg-[var(--color-primary)] transition-colors shrink-0">
+                          <button onClick={() => setBookingModalOpen(true)} className="px-5 py-2 sm:px-6 sm:py-2.5 bg-[#1A1A1A] text-white text-xs sm:text-sm font-bold hover:bg-[var(--color-primary)] transition-colors shrink-0 rounded-full">
                             Book Now
                           </button>
                         </div>
@@ -507,7 +507,7 @@ export default function Home() {
 
       {/* Indore Local Sightseeing */}
       <section id="indore-tours" className="pt-6 pb-2 md:pt-10 md:pb-4 bg-gray-50">
-        <div className="w-[90%] mx-auto max-w-none">
+        <div className="w-[95%] mx-auto max-w-none">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-medium text-gray-900 mb-4 tracking-tight">Indore Local Sightseeing</h2>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto font-light">Discover the vibrant culture, history, and flavors of Indore.</p>
@@ -536,7 +536,7 @@ export default function Home() {
 
       {/* State-wise Tours */}
       <section id="states" className="pt-12 pb-12 md:pt-16 md:pb-16 bg-[#1e7123]">
-        <div className="w-[90%] mx-auto max-w-none">
+        <div className="w-[95%] mx-auto max-w-none">
           <div className="text-center mb-10 md:mb-16 px-4">
             <h2 className="text-3xl md:text-4xl font-medium text-white mb-4 tracking-tight">Explore by State</h2>
             <p className="text-base sm:text-lg text-gray-100 opacity-90 max-w-2xl mx-auto font-light leading-relaxed">
@@ -574,7 +574,7 @@ export default function Home() {
 
       {/* Services Section */}
       <section id="services" className="py-12 md:py-16 bg-white">
-        <div className="w-[90%] mx-auto max-w-none">
+        <div className="w-[95%] mx-auto max-w-none">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-medium text-gray-900 tracking-tight mb-2">Our Services</h2>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto font-light mb-8">Explore our wide range of tailored travel and transport services.</p>
@@ -617,7 +617,7 @@ export default function Home() {
 
       {/* Why Choose Us */}
       <section className="py-12 md:py-16 bg-white">
-        <div className="w-[90%] mx-auto max-w-6xl">
+        <div className="w-[95%] mx-auto max-w-6xl">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-medium text-gray-900 tracking-tight mb-2">Why Choose Us</h2>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto font-light mb-8">Experience the difference with our commitment to quality, comfort, and reliability.</p>
@@ -748,7 +748,7 @@ export default function Home() {
 
       {/* Google Reviews */}
       <section id="reviews" className="pt-12 pb-8 md:pt-16 md:pb-10 bg-[#1e7123]">
-        <div className="w-[90%] mx-auto max-w-none text-center">
+        <div className="w-[95%] mx-auto max-w-none text-center">
 
           <h2 className="text-3xl md:text-4xl font-medium text-white tracking-tight mb-2">What Our Customers Say</h2>
           <p className="text-lg text-white/80 max-w-2xl mx-auto font-light mb-12"><strong>4.9/5</strong> based on over 100+ Google Reviews.</p>
@@ -789,7 +789,7 @@ export default function Home() {
 
       {/* FAQ */}
       <section className="pt-12 md:pt-16 pb-6 md:pb-10 bg-white">
-        <div className="w-[90%] mx-auto max-w-4xl">
+        <div className="w-[95%] mx-auto max-w-4xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-medium text-gray-900 tracking-tight mb-2">Frequently Asked Questions</h2>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto font-light">Got questions? Find answers to commonly asked questions below.</p>
@@ -829,7 +829,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer id="contact" className="bg-[#1e7123] text-gray-200 py-24 font-sans">
-        <div className="w-[90%] mx-auto max-w-7xl grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-8 items-start">
+        <div className="w-[95%] mx-auto max-w-7xl grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-8 items-start">
 
           {/* Quick Links */}
           <div className="col-span-1 flex flex-col items-start">
@@ -905,7 +905,7 @@ export default function Home() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="w-[90%] mx-auto max-w-7xl mt-20 pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/60 font-light">
+        <div className="w-[95%] mx-auto max-w-7xl mt-20 pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/60 font-light">
           <p>© {new Date().getFullYear()} Rahul Tour & Travels. All Rights Reserved.</p>
           <div className="flex gap-6">
             <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
@@ -942,22 +942,22 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setBookingModalOpen(false)}></div>
           <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden animate-fade-in-up scale-100">
             <div className="p-6 text-center">
-              <button 
+              <button
                 onClick={() => setBookingModalOpen(false)}
                 className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 bg-gray-100 rounded-full transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
-              
+
               <div className="flex justify-center mx-auto mb-4">
                 <img src="/logo/logo1.png" alt="Travel with Rahul" className="h-16 md:h-20 w-auto object-contain" />
               </div>
-              
+
               <h3 className="text-2xl font-bold text-gray-900 mb-2 font-sans">Book a Trip or Rent a Car/Bus</h3>
               <p className="text-gray-600 mb-6 text-[15px]">
                 Online booking is coming soon! For now, you can quickly book your trip or rental via WhatsApp or Call us directly.
               </p>
-              
+
               <div className="flex flex-col gap-3">
                 <a href="https://wa.me/918989299997?text=Hi,%20I%20would%20like%20to%20book%20a%20trip/vehicle" target="_blank" rel="noreferrer" className="w-full bg-[#25D366] hover:bg-[#1DA851] text-white py-3.5 font-bold text-[16px] flex items-center justify-center gap-2 shadow-lg transition-transform hover:scale-[1.02]">
                   <WhatsApp className="w-5 h-5" /> Book via WhatsApp

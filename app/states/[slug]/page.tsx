@@ -116,7 +116,7 @@ export default async function StatePage({ params }: { params: Promise<{ slug: st
       </div>
 
       {/* Places Grid */}
-      <div className="w-[90%] mx-auto max-w-7xl mt-8">
+      <div className="w-[95%] mx-auto max-w-7xl mt-8">
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 pt-4 pb-4">
           {stateInfo.places.map((place, i) => (
@@ -137,7 +137,7 @@ export default async function StatePage({ params }: { params: Promise<{ slug: st
 
       {/* Footer */}
       <footer id="contact" className="bg-[#1e7123] text-gray-200 py-24 font-sans mt-20">
-        <div className="w-[90%] mx-auto max-w-7xl grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-8 items-start">
+        <div className="w-[95%] mx-auto max-w-7xl grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-8 items-start">
           {/* Quick Links */}
           <div className="col-span-1 flex flex-col items-start">
             <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-white/50">Quick Links</h3>
@@ -211,7 +211,7 @@ export default async function StatePage({ params }: { params: Promise<{ slug: st
         </div>
 
         {/* Bottom Bar */}
-        <div className="w-[90%] mx-auto max-w-7xl mt-20 pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/60 font-light">
+        <div className="w-[95%] mx-auto max-w-7xl mt-20 pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/60 font-light">
           <p>© {new Date().getFullYear()} Rahul Tour & Travels. All Rights Reserved.</p>
           <div className="flex gap-6">
             <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
