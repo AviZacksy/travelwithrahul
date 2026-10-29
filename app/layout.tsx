@@ -47,7 +47,23 @@ export const metadata: Metadata = {
     "Luxury car rental Indore", "Indore tempo traveller service", "Indore Urbania on rent",
     "Outstation Taxi Indore", "Chardham Yatra Taxi", "Mahakaleshwar Taxi from Indore",
     "Omkareshwar to Indore Taxi", "Corporate Travel Indore", "Wedding Car Rental Indore",
-    "Luxury Bus Rent Indore", "Best Taxi Service in Indore"
+    "Luxury Bus Rent Indore", "Best Taxi Service in Indore", "Urbania on rent Indore",
+    "Urbania on outstation", "Traveller on outstation", "Best travel Indore", "Travel agency near me",
+    "Innova crysta on rent", "Innova Crysta on hire", "Innova hire taxi", "Innova on taxi booking",
+    "Innova crysta book", "Innova booking", "Cysta for outstation", "Innova Crysta for out station",
+    "12 seater tempo traveller on rent in indore", "17 seater tempo traveller on rent in indore",
+    "20 seater tempo traveller on rent in indore", "26 seater tempo traveller on rent in indore",
+    "Traveller service indore", "Innova crysta on rent Indore", "Innova taxi service",
+    "Taxi innova service indore", "Indore one way taxi", "Indore to outstation one way taxi",
+    "Indore one way cab", "One way taxi service", "One way taxi cab", "Taxi service in ujjain",
+    "Taxi service in omkareshwar", "Taxi service in Indore", "Taxi service in maheshwar",
+    "Cab service in Indore", "Cab service in Maheshwar", "Innova crysta taxi in Indore",
+    "Innova crysta taxi in omkareshwar", "Innova crysta taxi in ujjain", "Innova cab in Indore",
+    "Innova cab for outstation", "Ujjain taxi", "Omkareshwar taxi", "Indore taxi service",
+    "Indore to omkareshwar taxi", "Omkareshwar taxi service", "Force urbania in Indore",
+    "Force urbania in Ujjain", "Force urbania in omkareshwar", "Urbania rental in Indore",
+    "Urbania rental outstation", "Urbania rental ujjain", "Luxury urbania contact indore",
+    "Luxury Urbania in Indore"
   ],
 };
 
