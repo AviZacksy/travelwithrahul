@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Menu, X, Star, MessageCircle, WhatsApp, Instagram, Mail, ChevronRight, ChevronDown, Plus, ChevronLeft } from "@/components/Icons";
 
@@ -513,10 +514,17 @@ export default function Home() {
 
               <div className="relative z-10 max-w-5xl mx-auto px-6 sm:px-10 lg:px-16 w-full flex flex-col items-center justify-center text-center">
                 <div className="max-w-4xl lg:max-w-5xl text-white space-y-2 sm:space-y-3 lg:space-y-4">
-                  <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-5xl font-bold tracking-tight text-balance leading-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
-                    {slide.headingPrefix} <br className="hidden sm:inline" />
-                    {slide.headingAccent}
-                  </h1>
+                  {idx === 0 ? (
+                    <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-5xl font-bold tracking-tight text-balance leading-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
+                      {slide.headingPrefix} <br className="hidden sm:inline" />
+                      {slide.headingAccent}
+                    </h1>
+                  ) : (
+                    <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-5xl font-bold tracking-tight text-balance leading-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
+                      {slide.headingPrefix} <br className="hidden sm:inline" />
+                      {slide.headingAccent}
+                    </h2>
+                  )}
                   <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white/90 font-normal leading-relaxed text-balance max-w-3xl mx-auto drop-shadow-sm">
                     {slide.subheading}
                   </p>
@@ -1313,7 +1321,7 @@ export default function Home() {
                     </div>
                   </div>
                   <p className="text-gray-600 text-xs md:text-sm leading-relaxed font-light">
-                    "{review.text}"
+                    &quot;{review.text}&quot;
                   </p>
                 </motion.div>
               </motion.div>
@@ -1379,7 +1387,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer id="contact" className="bg-[#1e7123] text-gray-200 py-24 font-sans">
-        <div className="w-[95%] mx-auto max-w-7xl grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-8 items-start">
+        <div className="w-[95%] mx-auto max-w-7xl grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-8 items-start">
 
           {/* Quick Links */}
           <div className="col-span-1 flex flex-col items-start">
@@ -1393,6 +1401,19 @@ export default function Home() {
               <li><a href="#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Services</a></li>
               <li><a href="#reviews" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Reviews</a></li>
               <li><a href="#contact" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Contact Us</a></li>
+            </ul>
+          </div>
+
+          {/* State Tour Packages */}
+          <div className="col-span-1 flex flex-col items-start">
+            <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-white/50">State Tours</h3>
+            <ul className="flex flex-col space-y-3 text-white/80 font-light text-sm">
+              <li><Link href="/states/madhya-pradesh" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Madhya Pradesh Tour</Link></li>
+              <li><Link href="/states/rajasthan" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Rajasthan Tour</Link></li>
+              <li><Link href="/states/gujarat" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Gujarat Tour</Link></li>
+              <li><Link href="/states/maharashtra" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Maharashtra Tour</Link></li>
+              <li><Link href="/states/uttar-pradesh" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Uttar Pradesh Tour</Link></li>
+              <li><Link href="/states/uttarakhand" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Uttarakhand Tour</Link></li>
             </ul>
           </div>
 
@@ -1443,7 +1464,7 @@ export default function Home() {
               </li>
               <li className="flex items-center gap-3">
                 <WhatsApp className="w-5 h-5 text-white/60 shrink-0" />
-                <a href="https://wa.me/918989299997" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Chat on WhatsApp</a>
+                <a href="https://wa.me/918989299997" target="_blank" rel="nofollow noopener noreferrer" className="hover:text-white transition-colors">Chat on WhatsApp</a>
               </li>
               <li className="flex items-center gap-3">
                 <Instagram className="w-5 h-5 text-white/60 shrink-0" />
@@ -1458,8 +1479,8 @@ export default function Home() {
         <div className="w-[95%] mx-auto max-w-7xl mt-16 pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/60 font-light">
           <p>© {new Date().getFullYear()} Rahul Tour & Travels. All Rights Reserved.</p>
           <div className="flex gap-6">
-            <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="/terms-and-conditions" className="hover:text-white transition-colors">Terms & Conditions</a>
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms-and-conditions" className="hover:text-white transition-colors">Terms & Conditions</Link>
           </div>
         </div>
 
@@ -1502,7 +1523,7 @@ export default function Home() {
         <a
           href="https://wa.me/918989299997"
           target="_blank"
-          rel="noreferrer"
+          rel="nofollow noopener noreferrer"
           className="flex items-center justify-center bg-[#1e7123] text-white w-12 h-12 sm:w-13 sm:h-13 md:w-13 md:h-13 lg:w-14 lg:h-14 rounded-full shadow-xl hover:scale-110 transition-transform group relative border-2 border-white/20"
           aria-label="Chat with us on WhatsApp"
         >
@@ -1565,7 +1586,7 @@ export default function Home() {
                       : 'Hi, I would like to book a trip/vehicle'
                   )}`}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="nofollow noopener noreferrer"
                   className="w-full bg-[#25D366] hover:bg-[#1DA851] text-white py-3.5 font-bold text-[16px] flex items-center justify-center gap-2 shadow-lg transition-transform hover:scale-[1.02] rounded-xl"
                 >
                   <WhatsApp className="w-5 h-5" /> {selectedVehicle ? `Book ${selectedVehicle} on WhatsApp` : 'Book via WhatsApp'}

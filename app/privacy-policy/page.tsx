@@ -1,5 +1,15 @@
 import React from 'react';
+import type { Metadata } from 'next';
+import Link from 'next/link';
 import { MapPin, Phone, Mail, WhatsApp, Instagram, ChevronLeft } from "@/components/Icons";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "Read the Privacy Policy of Rahul Tour & Travels Indore. We are committed to protecting your personal information and ensuring secure car rental and travel bookings.",
+  alternates: {
+    canonical: "/privacy-policy",
+  },
+};
 
 export default function PrivacyPolicy() {
   return (
@@ -7,10 +17,10 @@ export default function PrivacyPolicy() {
       {/* Header */}
       <div className="bg-black py-6 md:py-8 px-6 sticky top-0 z-50 shadow-xl">
         <div className="max-w-7xl mx-auto">
-          <a href="/" className="inline-flex items-center text-white/80 hover:text-white hover:underline mb-4 md:mb-0 md:absolute md:top-10 font-medium transition-colors">
+          <Link href="/" className="inline-flex items-center text-white/80 hover:text-white hover:underline mb-4 md:mb-0 md:absolute md:top-10 font-medium transition-colors">
             <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
             Back to Home
-          </a>
+          </Link>
           <div className="text-center pt-2 pb-2">
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">Privacy Policy</h1>
             <p className="text-base md:text-lg text-white/90 max-w-2xl mx-auto font-light">Last Updated: {new Date().toLocaleDateString()}</p>
@@ -79,19 +89,32 @@ export default function PrivacyPolicy() {
 
       {/* Footer */}
       <footer id="contact" className="bg-[#1e7123] text-gray-200 py-24 font-sans mt-20">
-        <div className="w-[95%] mx-auto max-w-7xl grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-8 items-start">
+        <div className="w-[95%] mx-auto max-w-7xl grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-8 items-start">
           {/* Quick Links */}
           <div className="col-span-1 flex flex-col items-start">
             <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-white/50">Quick Links</h3>
             <ul className="flex flex-col space-y-3 text-white/80 font-light text-sm">
-              <li><a href="/" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Home</a></li>
-              <li><a href="/#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Destinations</a></li>
-              <li><a href="/#indore-tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Indore Local</a></li>
-              <li><a href="/#states" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Explore by State</a></li>
-              <li><a href="/#vehicles" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Vehicles</a></li>
-              <li><a href="/#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Services</a></li>
-              <li><a href="/#reviews" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Reviews</a></li>
-              <li><a href="/#contact" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Contact Us</a></li>
+              <li><Link href="/" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Home</Link></li>
+              <li><Link href="/#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Destinations</Link></li>
+              <li><Link href="/#indore-tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Indore Local</Link></li>
+              <li><Link href="/#states" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Explore by State</Link></li>
+              <li><Link href="/#vehicles" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Vehicles</Link></li>
+              <li><Link href="/#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Services</Link></li>
+              <li><Link href="/#reviews" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Reviews</Link></li>
+              <li><Link href="/#contact" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Contact Us</Link></li>
+            </ul>
+          </div>
+
+          {/* State Tour Packages */}
+          <div className="col-span-1 flex flex-col items-start">
+            <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-white/50">State Tours</h3>
+            <ul className="flex flex-col space-y-3 text-white/80 font-light text-sm">
+              <li><Link href="/states/madhya-pradesh" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Madhya Pradesh Tour</Link></li>
+              <li><Link href="/states/rajasthan" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Rajasthan Tour</Link></li>
+              <li><Link href="/states/gujarat" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Gujarat Tour</Link></li>
+              <li><Link href="/states/maharashtra" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Maharashtra Tour</Link></li>
+              <li><Link href="/states/uttar-pradesh" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Uttar Pradesh Tour</Link></li>
+              <li><Link href="/states/uttarakhand" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Uttarakhand Tour</Link></li>
             </ul>
           </div>
 
@@ -99,12 +122,12 @@ export default function PrivacyPolicy() {
           <div className="col-span-1 flex flex-col items-start">
             <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-white/50">Destinations</h3>
             <ul className="flex flex-col space-y-3 text-white/80 font-light text-sm">
-              <li><a href="/#indore-tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Indore Sightseeing</a></li>
-              <li><a href="/#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Ujjain Mahakaleshwar</a></li>
-              <li><a href="/#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Omkareshwar</a></li>
-              <li><a href="/#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Maheshwar</a></li>
-              <li><a href="/#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Mandu</a></li>
-              <li><a href="/#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Pachmarhi Hill</a></li>
+              <li><Link href="/#indore-tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Indore Sightseeing</Link></li>
+              <li><Link href="/#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Ujjain Mahakaleshwar</Link></li>
+              <li><Link href="/#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Omkareshwar</Link></li>
+              <li><Link href="/#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Maheshwar</Link></li>
+              <li><Link href="/#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Mandu</Link></li>
+              <li><Link href="/#tours" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Pachmarhi Hill</Link></li>
             </ul>
           </div>
 
@@ -112,12 +135,12 @@ export default function PrivacyPolicy() {
           <div className="col-span-1 flex flex-col items-start">
             <h3 className="text-white font-semibold text-lg mb-6 tracking-wide relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-white/50">Our Services</h3>
             <ul className="flex flex-col space-y-3 text-white/80 font-light text-sm">
-              <li><a href="/#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Vintage Car Hire</a></li>
-              <li><a href="/#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Luxury Car Rent</a></li>
-              <li><a href="/#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Tour Packages</a></li>
-              <li><a href="/#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Bus Booking</a></li>
-              <li><a href="/#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Airport Transfer</a></li>
-              <li><a href="/#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Wedding Car Rental</a></li>
+              <li><Link href="/#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Vintage Car Hire</Link></li>
+              <li><Link href="/#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Luxury Car Rent</Link></li>
+              <li><Link href="/#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Tour Packages</Link></li>
+              <li><Link href="/#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Bus Booking</Link></li>
+              <li><Link href="/#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Airport Transfer</Link></li>
+              <li><Link href="/#services" className="hover:text-white transition-colors hover:translate-x-1 inline-block transform duration-300">Wedding Car Rental</Link></li>
             </ul>
           </div>
 
@@ -142,7 +165,7 @@ export default function PrivacyPolicy() {
               </li>
               <li className="flex items-center gap-3">
                 <WhatsApp className="w-5 h-5 text-white/60 shrink-0" />
-                <a href="https://wa.me/918989299997" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Chat on WhatsApp</a>
+                <a href="https://wa.me/918989299997" target="_blank" rel="nofollow noopener noreferrer" className="hover:text-white transition-colors">Chat on WhatsApp</a>
               </li>
               <li className="flex items-center gap-3">
                 <Instagram className="w-5 h-5 text-white/60 shrink-0" />
@@ -156,8 +179,8 @@ export default function PrivacyPolicy() {
         <div className="w-[95%] mx-auto max-w-7xl mt-20 pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/60 font-light">
           <p>© {new Date().getFullYear()} Rahul Tour & Travels. All Rights Reserved.</p>
           <div className="flex gap-6">
-            <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="/terms-and-conditions" className="hover:text-white transition-colors">Terms & Conditions</a>
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms-and-conditions" className="hover:text-white transition-colors">Terms & Conditions</Link>
           </div>
         </div>
       </footer>
@@ -173,7 +196,7 @@ export default function PrivacyPolicy() {
         </a>
 
         {/* WhatsApp Button */}
-        <a href="https://wa.me/918989299997" target="_blank" rel="noreferrer" className="flex items-center justify-center bg-[#1e7123] text-white w-16 h-16 md:w-20 md:h-20 rounded-full shadow-2xl hover:scale-110 transition-transform group relative border-2 border-white/20">
+        <a href="https://wa.me/918989299997" target="_blank" rel="nofollow noopener noreferrer" className="flex items-center justify-center bg-[#1e7123] text-white w-16 h-16 md:w-20 md:h-20 rounded-full shadow-2xl hover:scale-110 transition-transform group relative border-2 border-white/20">
           <WhatsApp className="w-9 h-9 md:w-12 md:h-12" />
           <span className="absolute right-full mr-4 bg-white text-gray-800 px-3 py-1 rounded shadow-lg text-sm font-bold opacity-0 md:group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
             Chat with us

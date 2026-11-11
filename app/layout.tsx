@@ -18,8 +18,34 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Rahul Tour & Travels Indore | Premium Car, Van & Tempo Traveller on Rent",
+  metadataBase: new URL("https://www.travelwithrahul.in"),
+  title: {
+    default: "Rahul Tour & Travels Indore | Premium Car, Van & Tempo Traveller on Rent",
+    template: "%s | Rahul Tour & Travels Indore",
+  },
   description: "Best taxi services and premium car/luxury van rentals in Indore. Book AC Tempo Travellers, Force Urbania, Innova, and luxury vehicles for outstation trips, local tours, corporate travel, and pilgrimages like Omkareshwar, Ujjain, Kedarnath, and more.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Rahul Tour & Travels Indore | Premium Car, Van & Tempo Traveller on Rent",
+    description: "Best taxi services and premium car/luxury van rentals in Indore. Book AC Tempo Travellers, Force Urbania, Innova, and luxury vehicles.",
+    url: "https://www.travelwithrahul.in",
+    siteName: "Rahul Tour & Travels Indore",
+    locale: "en_IN",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   keywords: [
     "Rahul Tour and Travels Indore", "Tour and Travels Indore", "Car Rental Indore", "Car Hire Indore",
     "Force Traveller on Rent in Indore", "Force Urbania on Rent in Indore", "Luxury Van on Rent in Indore",
